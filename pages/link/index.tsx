@@ -73,7 +73,7 @@ const LinkPage = ({
 
   // 클라이언트에서 초기 목록을 설정
   useEffect(() => {
-    setLinkCardList(initialLinkList);
+    setLinkCardList(initialLinkList, totalCount);
   }, [initialLinkList, setLinkCardList]);
 
   // 링크페이지의 query가 바뀌면 새로운 리스트로 업데이트 해주는 훅

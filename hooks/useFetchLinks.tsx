@@ -5,7 +5,9 @@ import { LinkData } from "@/types/linkTypes";
 import useViewport from "./useViewport";
 
 // 링크페이지의 query가 바뀌면 그에 맞는 링크들을 보여주는 훅
-const useFetchLinks = (setLinkCardList: (list: LinkData[]) => void) => {
+const useFetchLinks = (
+  setLinkCardList: (list: LinkData[], totalCount: number) => void
+) => {
   const router = useRouter();
   const { isTablet } = useViewport();
 
@@ -26,7 +28,7 @@ const useFetchLinks = (setLinkCardList: (list: LinkData[]) => void) => {
           search: router.query.search,
         },
       });
-      setLinkCardList(res.data.list);
+      setLinkCardList(res.data.list, res.data.totalCount);
     };
     if (router.query) fetchLinks();
   }, [setLinkCardList, router.pathname, router.query, isTablet]);
