@@ -50,7 +50,7 @@ const FavoritePage = ({ favoriteList, totalCount }: FavoriteProps) => {
   const [linkCardList, setLinkCardList] =
     useState<FavoriteDataType[]>(favoriteList);
 
-  useFetchLinks(router.query, setLinkCardList);
+  useFetchLinks(setLinkCardList);
   return (
     <>
       <div className="page-title pt-[10px] md:pt-5 pb-10 md:pb-[60px] bg-gray100 text-center">
