@@ -12,7 +12,7 @@ const ModalShareItem = ({
   color?: string;
 }) => {
   return (
-    <div className="flex flex-col justify-center items-center gap-[10px]">
+    <div className="flex flex-col justify-center items-center gap-[10px] cursor-pointer hover:scale-105">
       <div
         style={{ backgroundColor: bg }}
         className={`bg-[${bg}] size-[42px] rounded-full flex justify-center items-center`}

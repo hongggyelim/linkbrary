@@ -8,10 +8,10 @@ import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 
 const EditModal = ({
-  folderName,
+  // folderName,
   folderId,
 }: {
-  folderName: string;
+  // folderName: string;
   folderId: number;
 }) => {
   const [value, setValue] = useState("");
@@ -25,25 +25,27 @@ const EditModal = ({
     const body = {
       name: value,
     };
-    if (value === folderName) {
-      toast.error(toastMessages.error.sameFolderName);
+    if (!folderId) {
+      toast.error(toastMessages.error.invalidLinkCount);
+      closeModal();
     } else if (value === "") {
       toast.error(toastMessages.error.inputFolderName);
     } else {
       try {
         await putFolder(folderId, body);
         toast.success(toastMessages.success.editFolder);
+        closeModal();
       } catch (error) {
         toast.error(toastMessages.error.editFolder);
+        closeModal();
       }
     }
-    closeModal();
   };
   return (
     <ModalContainer title="폴더 이름 변경">
       <ModalInput
-        placeholder={folderName}
-        name={folderName}
+        placeholder="수정할 이름을 입력해 주세요"
+        name="folderName"
         value={value}
         onChange={handleChange}
       />
