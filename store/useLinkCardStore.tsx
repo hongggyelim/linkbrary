@@ -13,17 +13,19 @@ interface UpdateLinkBody {
 
 interface LinkCardStore {
   linkCardList: LinkData[];
-  setLinkCardList: (list: LinkData[]) => void;
+  setLinkCardList: (list: LinkData[], totalCount: number) => void;
   updateLink: (linkId: number, body: UpdateLinkBody) => Promise<void>;
   deleteLink: (linkId: number) => Promise<void>;
   updateFavorite: (linkId: number, favorite: boolean) => Promise<void>;
+  totalCount: number;
 }
 
-export const useLinkCardStore = create<LinkCardStore>((set) => ({
+export const useLinkCardStore = create<LinkCardStore>((set, get) => ({
   linkCardList: [],
+  totalCount: 0,
 
-  setLinkCardList: (list: LinkData[]) => {
-    set({ linkCardList: list });
+  setLinkCardList: (list: LinkData[], totalCount: number) => {
+    set({ linkCardList: list, totalCount: totalCount });
   },
 
   // 수정 요청 보낸 후 목록 가져오기
