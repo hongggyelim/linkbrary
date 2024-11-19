@@ -1,17 +1,19 @@
-import Footer from "@/components/Layout/Footer";
-import Header from "@/components/Layout/Header";
-import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { Toaster } from "react-hot-toast";
+import Header from "@/components/Layout/Header";
+import Footer from "@/components/Layout/Footer";
+import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient();
   const router = useRouter();
   const hidePaths = ["/login", "/signup", "/404"];
 
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Head>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://linkbrary-9-99.vercel.app" />
@@ -47,6 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
         </div>
         {!hidePaths.includes(router.pathname) && <Footer />}
       </div>
-    </>
+    </QueryClientProvider>
   );
 }

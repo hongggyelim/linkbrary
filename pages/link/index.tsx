@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import { parse } from "cookie";
@@ -20,11 +19,12 @@ import LinkCard from "@/components/Link/LinkCard";
 import RenderEmptyLinkMessage from "@/components/Link/RenderEmptyLinkMessage";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
+import useGetFolderList from "@/hooks/useGetFolderList";
 
 interface LinkPageProps {
-  linkList: LinkData[];
-  folderList: FolderData[];
-  totalCount: number;
+  initialLinkList: LinkData[];
+  initialFolderList: FolderData[];
+  initialTotalCount: number;
 }
 
 // /link 페이지 접속시에 초기렌더링 데이터(전체 폴더, 전체링크리스트)만 fetch해서 client로 전달.
@@ -51,28 +51,29 @@ export const getServerSideProps = async (
 
   return {
     props: {
-      linkList: links.list || [],
+      initialLinkList: links.list || [],
       folderList: folders || [],
-      totalCount: links.totalCount || 0,
+      initialTotalCount: links.totalCount || 0,
     },
   };
 };
 
 const LinkPage = ({
-  linkList: initialLinkList,
-  folderList: initialFolderList,
-  totalCount: initialTotalCount,
+  initialLinkList,
+  initialFolderList,
+  initialTotalCount,
 }: LinkPageProps) => {
   const router = useRouter();
   const { search, folder } = router.query;
   const { isOpen } = useModalStore();
   const { isMobile } = useViewport();
-  const [linkCardList, setLinkCardList] = useState(initialLinkList);
-  const [folderList, setFolderList] = useState(initialFolderList);
-  const [totalCount, setTotalCount] = useState(initialTotalCount);
 
-  // 링크페이지의 query가 바뀌면 새로운 리스트로 업데이트 해주는 훅
-  useFetchLinks(setLinkCardList, setTotalCount, router.query, router.pathname);
+  // useFetchLinks 훅을 사용하여 링크 데이터 가져오기
+  const { data: linkData } = useFetchLinks(router.query, router.pathname);
+  const { data: folderListData } = useGetFolderList();
+  const linkCardList: LinkData[] = linkData?.list || initialLinkList; // 클라이언트에서 가져온 데이터가 없으면 초기 데이터 사용
+  const folderList: FolderData[] = folderData?.list || initialFolderList;
+  const totalCount: number = linkData?.totalCount || initialTotalCount;
 
   return (
     <>
@@ -85,17 +86,17 @@ const LinkPage = ({
           {search && <SearchResultMessage message={search} />}
           <div className="flex justify-between mt-[40px]">
             {folderList && <FolderTag folderList={folderList} />}
-            {!isMobile && <AddFolderButton setFolderList={setFolderList} />}
+            {/* {!isMobile && <AddFolderButton setFolderList={setFolderList} />} */}
           </div>
           <div className="flex justify-between items-center my-[24px]">
             <h1 className="text-2xl ">유용한 글</h1>
-            {folder && (
+            {/* {folder && (
               <FolderActionsMenu
                 setFolderList={setFolderList}
                 folderId={folder}
                 linkCount={totalCount}
               />
-            )}
+            )} */}
           </div>
           {linkCardList ? (
             <>
@@ -112,9 +113,9 @@ const LinkPage = ({
         </main>
       </Container>
       {isOpen && <Modal />}
-      {isMobile && (
+      {/* {isMobile && (
         <AddFolderButton setFolderList={setFolderList} isModal={true} />
-      )}
+      )} */}
     </>
   );
 };
