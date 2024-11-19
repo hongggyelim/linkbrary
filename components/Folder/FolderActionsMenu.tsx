@@ -4,16 +4,11 @@ import useModalStore from "@/store/useModalStore";
 import useRerenderFolderList from "../../hooks/useRerenderFolderList";
 
 interface FolderActionsMenuProps {
-  setFolderList: React.Dispatch<React.SetStateAction<FolderData[]>>;
   folderId: string | string[] | undefined;
   linkCount: number;
 }
 
-const FolderActionsMenu = ({
-  setFolderList,
-  folderId,
-  linkCount,
-}: FolderActionsMenuProps) => {
+const FolderActionsMenu = ({ folderId, linkCount }: FolderActionsMenuProps) => {
   const { isOpen, openModal } = useModalStore();
 
   const handleModalOpen = (text: string) => {

@@ -1,24 +1,15 @@
 import { getFolder } from "@/lib/api/folder";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const useFolderName = (folderId: string | string[] | undefined) => {
-  const [folderName, setFolderName] = useState("전체");
+  const getFolderName = async () => {
+    const res = await getFolder(folderId);
+    return res.name;
+  };
 
-  useEffect(() => {
-    if (!folderId) return;
-
-    const fetchFolderInfo = async () => {
-      try {
-        const res = await getFolder(folderId as string);
-        setFolderName(res.name);
-      } catch (error) {
-        console.error("Failed to fetch folder info:", error);
-      }
-    };
-    fetchFolderInfo();
-  }, [folderId]);
-
-  return [folderName, setFolderName];
+  return useQuery({
+    queryKey: ["folderName", folderId],
+    queryFn: () => getFolderName(),
+  });
 };
-
 export default useFolderName;

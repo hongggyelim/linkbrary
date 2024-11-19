@@ -16,11 +16,12 @@ import FolderActionsMenu from "@/components/Folder/FolderActionsMenu";
 import CardsLayout from "@/components/Layout/CardsLayout";
 import LinkCard from "@/components/Link/LinkCard";
 import RenderEmptyLinkMessage from "@/components/Link/RenderEmptyLinkMessage";
+import LoadingSpinner from "@/components/LoadingSpinner";
+import AddFolderButton from "@/components/Folder/AddFolderButton";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useGetFolderList from "@/hooks/useGetFolderList";
 import useFolderName from "@/hooks/useFolderName";
-import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface LinkPageProps {
   initialLinkList: LinkData[];
@@ -79,14 +80,17 @@ const LinkPage = ({
   const { isOpen } = useModalStore();
   const { isMobile } = useViewport();
 
-  // useFetchLinks 훅을 사용하여 링크 데이터 가져오기
-  const { data: linkData } = useFetchLinks(router.query, router.pathname);
+  // useQuery가 들어간 훅을 사용하여 새로운 데이터 가져오기
+  const { data: linkData, isLoading } = useFetchLinks(
+    router.query,
+    router.pathname
+  );
   const { data: folderListData } = useGetFolderList();
-  const linkCardList: LinkData[] = linkData?.list || initialLinkList; // 클라이언트에서 가져온 데이터가 없으면 초기 데이터 사용
-  const folderList: FolderData[] = folderData?.list || initialFolderList;
-  const totalCount: number = linkData?.totalCount || initialTotalCount;
-  const [folderName] = useFolderName(folder);
+  const { data: folderName } = useFolderName(folder);
 
+  const linkCardList: LinkData[] = linkData?.list || initialLinkList; // 클라이언트에서 가져온 데이터가 없으면 초기 데이터 사용
+  const folderList: FolderData[] = folderListData?.list || initialFolderList;
+  const totalCount: number = linkData?.totalCount || initialTotalCount;
 
   return (
     <>
@@ -99,14 +103,13 @@ const LinkPage = ({
           {search && <SearchResultMessage message={search} />}
           <div className="flex justify-between mt-[40px]">
             {folderList && <FolderTag folderList={folderList} />}
-            {/* {!isMobile && <AddFolderButton setFolderList={setFolderList} />} */}
+            {!isMobile && <AddFolderButton />}
           </div>
           <div className="flex justify-between items-center my-[24px]">
             {folder && (
               <>
                 <h1 className="text-2xl ">{folderName as string}</h1>
                 <FolderActionsMenu
-                  setFolderList={setFolderList}
                   folderId={folder}
                   linkCount={totalCount as number}
                 />
@@ -130,9 +133,7 @@ const LinkPage = ({
         </main>
       </Container>
       {isOpen && <Modal />}
-      {/* {isMobile && (
-        <AddFolderButton setFolderList={setFolderList} isModal={true} />
-      )} */}
+      {isMobile && <AddFolderButton isModal={true} />}
     </>
   );
 };

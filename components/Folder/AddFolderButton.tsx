@@ -3,14 +3,10 @@ import useModalStore from "@/store/useModalStore";
 import useRerenderFolderList from "@/hooks/useRerenderFolderList";
 
 interface AddFolderButtonProps {
-  setFolderList: React.Dispatch<React.SetStateAction<FolderData[]>>;
   isModal?: boolean;
 }
 
-export const AddFolderButton = ({
-  setFolderList,
-  isModal = false,
-}: AddFolderButtonProps) => {
+export const AddFolderButton = ({ isModal = false }: AddFolderButtonProps) => {
   const { isOpen, openModal } = useModalStore();
 
   useRerenderFolderList(isOpen, setFolderList);
