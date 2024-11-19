@@ -22,13 +22,13 @@ const SubmitButton = ({
   disabled,
   ...props
 }: ButtonProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (isLoading || disabled) return;
 
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       if (onClick) await onClick(e);
     } catch (error) {
       console.error("버튼 클릭 중 에러 발생:", error);
@@ -56,7 +56,7 @@ const SubmitButton = ({
       {...props}
     >
       {isLoading ? (
-        <div className="h-full m-4">
+        <div className="h-full">
           <LoadingSpinner size={25} />
         </div>
       ) : (

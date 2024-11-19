@@ -12,7 +12,6 @@ import AddLinkInput from "@/components/Link/AddLinkInput";
 import Container from "@/components/Layout/Container";
 import SearchResultMessage from "@/components/Search/SearchResultMessage";
 import FolderTag from "@/components/Folder/FolderTag";
-import AddFolderButton from "@/components/Folder/AddFolderButton";
 import FolderActionsMenu from "@/components/Folder/FolderActionsMenu";
 import CardsLayout from "@/components/Layout/CardsLayout";
 import LinkCard from "@/components/Link/LinkCard";
@@ -20,6 +19,8 @@ import RenderEmptyLinkMessage from "@/components/Link/RenderEmptyLinkMessage";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useGetFolderList from "@/hooks/useGetFolderList";
+import useFolderName from "@/hooks/useFolderName";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 interface LinkPageProps {
   initialLinkList: LinkData[];
@@ -34,6 +35,16 @@ export const getServerSideProps = async (
   const { req } = context;
   const cookies = parse(req.headers.cookie || "");
   const accessToken = cookies.accessToken;
+
+  // accessToken이 없으면 클라이언트에서 실행될 때 /login 페이지로 이동시킴.
+  if (!accessToken) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
 
   const fetchData = async (endpoint: string) => {
     const res = await axiosInstance.get(endpoint, {
@@ -74,6 +85,8 @@ const LinkPage = ({
   const linkCardList: LinkData[] = linkData?.list || initialLinkList; // 클라이언트에서 가져온 데이터가 없으면 초기 데이터 사용
   const folderList: FolderData[] = folderData?.list || initialFolderList;
   const totalCount: number = linkData?.totalCount || initialTotalCount;
+  const [folderName] = useFolderName(folder);
+
 
   return (
     <>
@@ -89,23 +102,27 @@ const LinkPage = ({
             {/* {!isMobile && <AddFolderButton setFolderList={setFolderList} />} */}
           </div>
           <div className="flex justify-between items-center my-[24px]">
-            <h1 className="text-2xl ">유용한 글</h1>
-            {/* {folder && (
-              <FolderActionsMenu
-                setFolderList={setFolderList}
-                folderId={folder}
-                linkCount={totalCount}
-              />
-            )} */}
+            {folder && (
+              <>
+                <h1 className="text-2xl ">{folderName as string}</h1>
+                <FolderActionsMenu
+                  setFolderList={setFolderList}
+                  folderId={folder}
+                  linkCount={totalCount as number}
+                />
+              </>
+            )}
           </div>
-          {linkCardList ? (
+          {isLoading ? (
+            <LoadingSpinner /> // 로딩 상태일 때 로딩 스피너 표시
+          ) : linkCardList.length !== 0 ? (
             <>
               <CardsLayout>
                 {linkCardList.map((link) => (
                   <LinkCard key={link.id} info={link} />
                 ))}
               </CardsLayout>
-              <Pagination totalCount={totalCount} />
+              <Pagination totalCount={totalCount as number} />
             </>
           ) : (
             <RenderEmptyLinkMessage />

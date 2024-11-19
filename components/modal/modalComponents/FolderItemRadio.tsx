@@ -1,5 +1,5 @@
-import { bindCls } from "@/lib/utils";
 import { FolderItemType } from "@/types/modalTypes";
+import { bindClass } from "@/util/bindClass";
 import { FaCheck } from "react-icons/fa6";
 
 const FolderItemRadio = ({
@@ -20,7 +20,7 @@ const FolderItemRadio = ({
   };
   return (
     <li
-      className={bindCls(
+      className={bindClass(
         bgColor,
         "w-full p-2 flex h-10 rounded-lg items-center justify-between cursor-pointer"
       )}

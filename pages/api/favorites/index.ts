@@ -5,7 +5,7 @@ import axiosInstance from "@/lib/api/axiosInstanceApi";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const cookies = parse(req.headers.cookie || "");
   const accessToken = cookies.accessToken;
-  const { page, pageSize = 6 } = req.query;
+  const { page, pageSize } = req.query;
 
   if (!accessToken) {
     return res.status(401).json({ message: "인증 오류: 토큰이 없습니다." });

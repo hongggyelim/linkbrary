@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import debounce from "lodash.debounce";
 
 const breakpoints = {
   PC: { min: 1200 },
@@ -10,14 +11,21 @@ const breakpoints = {
 function useViewport(initialWidth = 0) {
   const [width, setWidth] = useState(initialWidth);
 
-  const handleResize = () => {
+  // debounce를 사용하여 resize 이벤트 핸들러 생성
+  const handleResize = debounce(() => {
     setWidth(window.innerWidth);
-  };
+  }, 200); // 200ms 지연
 
   useEffect(() => {
     handleResize();
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    return () => {
+      // 컴포넌트 언마운트 시 이벤트 리스너 제거 및 디바운스 정리
+      window.removeEventListener("resize", handleResize);
+      handleResize.cancel(); // debounce 취소
+    };
   }, []);
 
   const isPC = width >= breakpoints.PC.min;

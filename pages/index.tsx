@@ -22,11 +22,11 @@ const HomePage = () => {
   const router = useRouter();
   const { user } = useAuthStore();
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (user) {
-      router.push("/link");
+      await router.push("/link");
     } else {
-      router.push("/login");
+      await router.push("/login");
     }
   };
 
@@ -41,7 +41,7 @@ const HomePage = () => {
         </h2>
         <SubmitButton
           onClick={handleClick}
-          className="mt-[24px] w-[200px] h-[37px] text-[14px] md:mt-[40px] md:w-[350px] md:h-[53px] md:text-[18px] lg:mt-[40px] lg:w-[350px] lg:h-[53px] lg:text-[18px]"
+          className="sm:mt-[24px] sm:w-[200px] sm:h-[50px] sm:text-[14px] md:mt-[40px] md:w-[350px] md:h-[53px] md:text-[18px] lg:mt-[40px] lg:w-[350px] lg:h-[53px] lg:text-[18px]"
         >
           링크 추가하기
         </SubmitButton>

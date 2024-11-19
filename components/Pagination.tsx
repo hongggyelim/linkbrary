@@ -16,7 +16,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalCount }) => {
 
   const { page, pageSize } = router.query;
   const currentPage = Number(page) || 1;
-  const currentPageSize = Number(pageSize) || 6;
+  const currentPageSize = Number(pageSize) || 9;
   const totalPages = Math.ceil(totalCount / currentPageSize);
 
   const [maxPagesToShow, setMaxPagesToShow] = useState(2);

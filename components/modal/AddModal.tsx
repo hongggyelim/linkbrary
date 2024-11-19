@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const { closeModal } = useModalStore();
-  const route = useRouter();
+  const router = useRouter();
 
   const handleSubmit = async () => {
     const body = {
@@ -25,7 +25,7 @@ const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
       try {
         await postLink(body);
         toast.success(toastMessages.success.addLink);
-        route.push(`/link?folder=${selectedId}`);
+        router.push(`/link?folder=${selectedId}`);
       } catch (error) {
         toast.error(toastMessages.error.addLink);
       } finally {

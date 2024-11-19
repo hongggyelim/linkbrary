@@ -31,6 +31,7 @@ const toastMessages = {
     sameFolderName: "같은 이름으로는 수정할 수 없습니다",
     invalidLink: "잘못된 링크 형식입니다",
     invalidLinkCount: "폴더 정보를 받아오는데 실패했습니다",
+    needLogin: "로그인 후 이용해주세요",
   },
 };
 

@@ -5,7 +5,7 @@ import axiosInstance from "@/lib/api/axiosInstanceApi";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const cookies = parse(req.headers.cookie || "");
   const accessToken = cookies.accessToken;
-  const { page, pageSize = 6, search } = req.query;
+  const { page, pageSize, search } = req.query;
 
   switch (req.method) {
     case "GET":
