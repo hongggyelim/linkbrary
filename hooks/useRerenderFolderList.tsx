@@ -1,29 +1,16 @@
-import { useEffect, useRef } from "react";
-import { getFolders } from "@/lib/api/folder";
-import { FolderData } from "@/types/folderTypes";
+import { useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
-// 모달이 닫혔을 때 새로운 FolderList를 보여주는 커스텀 훅
-const useRerenderFolderList = (
-  isOpen: boolean,
-  setFolderList: React.Dispatch<React.SetStateAction<FolderData[]>>
-) => {
-  const isFirstRender = useRef(true);
+// 모달이 닫혔을 때 기존 FolderList를 재검증하는 커스텀 훅
+const useRerenderFolderList = (isOpen: boolean) => {
+  const queryClient = useQueryClient();
 
+  // isOpen이 false일 때 쿼리 무효화
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return; // 최초 로드 시에 불필요한 fetch 요청을 막아줌.
-    }
-
-    const fetchNewFolderList = async () => {
-      const res = await getFolders();
-      setFolderList(res);
-    };
-
     if (!isOpen) {
-      fetchNewFolderList(); // 드랍다운이 한번 열리고 닫혔을 때 데이터 fetch
+      queryClient.invalidateQueries({ queryKey: ["folderList"] }); // folderList 쿼리 무효화 -> staile로 만듦으로써 refetch
     }
-  }, [isOpen, setFolderList]);
+  }, [isOpen, queryClient]);
 };
 
 export default useRerenderFolderList;

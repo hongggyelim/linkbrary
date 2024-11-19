@@ -1,4 +1,3 @@
-import { FolderData } from "@/types/folderTypes";
 import useModalStore from "@/store/useModalStore";
 import useRerenderFolderList from "@/hooks/useRerenderFolderList";
 
@@ -9,7 +8,7 @@ interface AddFolderButtonProps {
 export const AddFolderButton = ({ isModal = false }: AddFolderButtonProps) => {
   const { isOpen, openModal } = useModalStore();
 
-  useRerenderFolderList(isOpen, setFolderList);
+  useRerenderFolderList(isOpen);
 
   return (
     <button
