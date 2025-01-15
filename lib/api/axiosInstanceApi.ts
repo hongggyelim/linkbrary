@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export const proxy = axios.create({
-  baseURL: "https://linkbrary-9-99.vercel.app",
+  baseURL: "https://linkbrary-coral.vercel.app",
   // baseURL: "http://localhost:3000",
 });
 

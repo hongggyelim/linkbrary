@@ -1,23 +1,22 @@
 ## Linkbrary - 코드잇 스프린트 FE 9기
-### 배포 사이트 : https://linkbrary-9-99.vercel.app/
+
+### 배포 사이트 : https://linkbrary-coral.vercel.app/
 
 ### 프로젝트 소개
 
 <img width="600" alt="contents-01" src="https://github.com/user-attachments/assets/135348d0-ed9d-492e-a9a4-6216bddca0d1">
 
-
 > 자신만의 링크를 저장하고 공유하는 서비스 제공
 
 > 작업 기간 : 2024.11.06 (수) - 2024.11.19 (화)
 
-
 ## 팀원 소개
 
-|            | <img src="https://github.com/user-attachments/assets/5c4fd2d8-ce67-4f0a-9ce8-d6a928a4752d" alt="박문균" width="150" height="200"/> <br> **박문균 (👑 PM)** | <img src="https://avatars.githubusercontent.com/u/174448906?v=4" alt="전상민" width="150" height="200" /> <br> **전상민** | <img src="https://github.com/user-attachments/assets/c507e53d-ac12-4c2c-83f2-4ab4bc018f56" alt="구민지" width="150" height="200"/> <br> **구민지** | <img src="https://github.com/user-attachments/assets/acffe020-b376-4493-97cc-cadfc74d0eef" alt="정준영" width="150" height="200"/> <br> **정준영** | <img src="https://github.com/user-attachments/assets/fe813d8b-9ba2-4480-a4cc-7d48fc239db7" alt="홍예림" width="150" height="200" /> <br> **홍예림** |
-|------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| 역할       | 팀장으로 프로젝트 참여<br>로그인 / 회원가입 기능<br>간편 로그인 / 회원가입                         | 랜딩 페이지 구현<br>유저 정보 관리<br>소셜 공유                                 | 즐겨찾기 페이지<br>즐겨찾기 기능<br>링크 수정 / 삭제 기능                        | 링크 페이지 구현                                                                              | 폴더 / 링크 관리 모달 구현                                   |
-| 이메일     | mungyun1234@naver.com                                                                              | venise5224@gmail.com                                                           | rnalswl96@naver.com                                                            | wn8624@naver.com                                                               | hongggy@gmail.com                                                                |
-| GitHub     | [mungyun](https://github.com/mungyun/)                                                              | [venise5224](https://github.com/venise5224)                                        | [99minji](https://github.com/99minji/99minji.git)                               | [junjeeong](https://github.com/junjeeong)                                          | [hongggyelim](https://github.com/hongggyelim)                                         |
+|        | <img src="https://github.com/user-attachments/assets/5c4fd2d8-ce67-4f0a-9ce8-d6a928a4752d" alt="박문균" width="150" height="200"/> <br> **박문균 (👑 PM)** | <img src="https://avatars.githubusercontent.com/u/174448906?v=4" alt="전상민" width="150" height="200" /> <br> **전상민** | <img src="https://github.com/user-attachments/assets/c507e53d-ac12-4c2c-83f2-4ab4bc018f56" alt="구민지" width="150" height="200"/> <br> **구민지** | <img src="https://github.com/user-attachments/assets/acffe020-b376-4493-97cc-cadfc74d0eef" alt="정준영" width="150" height="200"/> <br> **정준영** | <img src="https://github.com/user-attachments/assets/fe813d8b-9ba2-4480-a4cc-7d48fc239db7" alt="홍예림" width="150" height="200" /> <br> **홍예림** |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 역할   | 팀장으로 프로젝트 참여<br>로그인 / 회원가입 기능<br>간편 로그인 / 회원가입                                                                                 | 랜딩 페이지 구현<br>유저 정보 관리<br>소셜 공유                                                                           | 즐겨찾기 페이지<br>즐겨찾기 기능<br>링크 수정 / 삭제 기능                                                                                          | 링크 페이지 구현                                                                                                                                   | 폴더 / 링크 관리 모달 구현                                                                                                                          |
+| 이메일 | mungyun1234@naver.com                                                                                                                                      | venise5224@gmail.com                                                                                                      | rnalswl96@naver.com                                                                                                                                | wn8624@naver.com                                                                                                                                   | hongggy@gmail.com                                                                                                                                   |
+| GitHub | [mungyun](https://github.com/mungyun/)                                                                                                                     | [venise5224](https://github.com/venise5224)                                                                               | [99minji](https://github.com/99minji/99minji.git)                                                                                                  | [junjeeong](https://github.com/junjeeong)                                                                                                          | [hongggyelim](https://github.com/hongggyelim)                                                                                                       |
 
 ## 🚀 시작하기
 
@@ -58,7 +57,6 @@ npm run dev
 
 **react-hot-toast** / **react-icons** / **react-spinners**
 
-
 ## 유저 플로우
 
 ![LinkBrary_UserFlow2](https://github.com/user-attachments/assets/1d2dfd32-c839-423e-9ba2-78277f380997)
@@ -71,13 +69,13 @@ npm run dev
 
 🌟 즐겨찾는 링크를 모아보세요
 
-📱 반응형 웹디자인 
+📱 반응형 웹디자인
 
 👥 간편 로그인
 
 ### ✅메인 랜딩 페이지(“/”)
 
- ‘로그인' 버튼을 클릭하면 /login 페이지로 이동합니다.
+‘로그인' 버튼을 클릭하면 /login 페이지로 이동합니다.
 
 '링크 추가하기' 버튼을 클릭하면
 
@@ -101,9 +99,9 @@ npm run dev
 
 추가된 폴더에서 폴더 수정/삭제가 가능합니다.
 
-유효한 링크를 입력하고 '추가하기' 버튼을 누르면 링크가 추가됩니다. 
+유효한 링크를 입력하고 '추가하기' 버튼을 누르면 링크가 추가됩니다.
 
-추가된 링크 카드는 해당 url에서 title  / discription / imageSource createdAt 를 불러옵니다.
+추가된 링크 카드는 해당 url에서 title / discription / imageSource createdAt 를 불러옵니다.
 
 링크 검색바에 검색어를 입력하면 전체 링크중 “url”, “title”, “description” 중 하나에 검색어가 포함된 링크들만 필터된 상태로 보입니다.
 
@@ -116,24 +114,28 @@ npm run dev
 즐겨찾기 된 링크만 보여줍니다.
 
 ## 노션 링크
+
 [Notion 구경 가기👀](https://nickel-vegetarian-de0.notion.site/Linkbrary-135f52d774a880c8ba19f7c043a4b1c0?pvs=74)
 
 ## 브랜치 전략
+
 #### 📌Git Flow
 
 1. **main 브랜치**
-    - 항상 배포 가능한 상태를 유지하는 브랜치로, 프로덕션에 직접 반영되는 코드가 포함됩니다.
+   - 항상 배포 가능한 상태를 유지하는 브랜치로, 프로덕션에 직접 반영되는 코드가 포함됩니다.
 2. **develop 브랜치**
-    - 개발 중인 코드가 모이는 브랜치로, 모든 새로운 기능과 수정 사항이 병합되기 전에 여기서 통합 테스트가 이루어집니다.
+   - 개발 중인 코드가 모이는 브랜치로, 모든 새로운 기능과 수정 사항이 병합되기 전에 여기서 통합 테스트가 이루어집니다.
 3. **feature 브랜치**
-    - 각 기능(또는 이슈)을 개발하기 위해 만들어지는 브랜치로, 일반적으로 `feature/이슈명` 형태로 생성됩니다.
-    - 작업 완료 후 **develop 브랜치**에 병합됩니다.
+   - 각 기능(또는 이슈)을 개발하기 위해 만들어지는 브랜치로, 일반적으로 `feature/이슈명` 형태로 생성됩니다.
+   - 작업 완료 후 **develop 브랜치**에 병합됩니다.
 4. **hotfix 브랜치**
-    - 프로덕션(main 브랜치)에서 발견된 긴급한 버그를 수정하기 위해 사용하는 브랜치입니다.
-    - 수정 후 main과 develop 브랜치에 병합됩니다.
+   - 프로덕션(main 브랜치)에서 발견된 긴급한 버그를 수정하기 위해 사용하는 브랜치입니다.
+   - 수정 후 main과 develop 브랜치에 병합됩니다.
 
 ## **📝 시연 영상**
+
 #### 랜딩페이지
+
 <img src="https://github.com/user-attachments/assets/422c8c2c-a6d9-4601-bdd0-b543a0139ff6" width="600px" alt="랜딩 페이지" />
 
 #### 로그인
@@ -162,8 +164,4 @@ npm run dev
 
 #### 즐겨찾기 추가 및 조회
 
-
 <img src="https://github.com/user-attachments/assets/96b43e58-6685-4597-8f96-6aa981004ce4" width="600px" alt="즐겨찾기 추가 조회" />
-
-
-
