@@ -21,7 +21,10 @@ export default function App({ Component, pageProps }: AppProps) {
           property="og:description"
           content="나만의 링크를 관리하는 Linkbrary"
         />
-        <meta property="og:image" content="/images/home_main.png" />
+        <meta
+          property="og:image"
+          content="https://linkbrary-coral.vercel.app/images/home_main.png"
+        />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
