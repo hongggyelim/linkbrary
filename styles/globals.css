@@ -62,3 +62,23 @@ em {
 input {
   outline: none;
 }
+
+/* 스크롤 커스텀 */
+.scrollbar-custom {
+  overflow-y: auto; /* 기본 overflow-y-auto 추가 */
+}
+.scrollbar-custom::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* 가로 스크롤바 높이 */
+}
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #6d6afe;
+  border-radius: 9999px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #6d6afe;
+}
