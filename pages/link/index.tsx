@@ -22,6 +22,8 @@ import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useFolderName from "@/hooks/useFolderName";
 import LinkCardSkeleton from "@/components/skeleton/LinkCardSkeleton";
+import toast, { Toaster } from "react-hot-toast";
+import toastMessages from "@/lib/toastMessage";
 
 interface LinkPageProps {
   linkList: LinkData[];
@@ -83,6 +85,7 @@ const LinkPage = ({
   const [isLoading, setIsLoading] = useState(false);
   const [folderName] = useFolderName(folder);
   const [folderList, setFolderList] = useState(initialFolderList);
+  const { openModal } = useModalStore();
 
   useEffect(() => {
     setLinkCardList(initialLinkList, initialTotalCount);
@@ -91,6 +94,13 @@ const LinkPage = ({
   // 링크페이지의 query가 바뀌면 새로운 리스트로 업데이트 해주는 훅
   useFetchLinks(setLinkCardList, setIsLoading);
 
+  // 생성된 폴더가 없으면 폴더 생성 모달 띄워주기
+  useEffect(() => {
+    if (folderList.length === 0) {
+      toast.success(toastMessages.success.addFolderInfo);
+      openModal("AddFolderModal");
+    }
+  }, []);
   return (
     <>
       <div className="bg-gray100 w-full h-[219px] flex justify-center items-center">

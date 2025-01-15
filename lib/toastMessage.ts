@@ -10,6 +10,7 @@ const toastMessages = {
     editFolder: "폴더가 수정되었습니다",
     copyLink: "링크가 복사되었습니다", // SNS 모달에서 링크 복사 시
     SNSshare: "공유가 완료되었습니다",
+    addFolderInfo: "폴더를 생성해주세요",
   },
   error: {
     login: "로그인 실패: 이메일 또는 비밀번호를 확인해주세요",
