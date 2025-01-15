@@ -87,7 +87,7 @@ const FavoritePage = ({
         </div>
         {/* 로딩 중일 때 */}
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[...Array(3)].map((_, index) => (
               <LinkCardSkeleton key={index} />
             ))}
