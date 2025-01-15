@@ -79,13 +79,18 @@ const LinkPage = ({
 }: LinkPageProps) => {
   const router = useRouter();
   const { search, folder } = router.query;
-  const { isMobile } = useViewport();
+  const { isMobile, isTablet, isPC, width } = useViewport();
   const { totalCount, linkCardList, setLinkCardList } =
     useLinkCardStore.getState();
   const [isLoading, setIsLoading] = useState(false);
   const [folderName] = useFolderName(folder);
   const [folderList, setFolderList] = useState(initialFolderList);
   const { openModal } = useModalStore();
+  const [cardCount, setCardCount] = useState(3);
+  useEffect(() => {
+    const newCount = isPC ? 3 : isTablet ? 2 : 1;
+    setCardCount(newCount);
+  }, [width]);
 
   useEffect(() => {
     setLinkCardList(initialLinkList, initialTotalCount);
@@ -128,7 +133,7 @@ const LinkPage = ({
           </div>
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[...Array(3)].map((_, index) => (
+              {[...Array(cardCount)].map((_, index) => (
                 <LinkCardSkeleton key={index} />
               ))}
             </div>

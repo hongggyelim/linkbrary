@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { parse } from "cookie";
@@ -10,6 +10,7 @@ import Pagination from "@/components/Pagination";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import EmptyFavoriteList from "@/components/Favorite/EmptyFavoriteList";
 import LinkCardSkeleton from "@/components/skeleton/LinkCardSkeleton";
+import useViewport from "@/hooks/useViewport";
 
 interface FavoriteDataType {
   id: number;
@@ -64,6 +65,12 @@ const FavoritePage = ({
     useState<FavoriteDataType[]>(favoriteList);
   const [isLoading, setIsLoading] = useState(false);
   const [totalCount, setTotalCount] = useState(initialTotalCount);
+  const { isMobile, isTablet, isPC, width } = useViewport();
+  const [cardCount, setCardCount] = useState(3);
+  useEffect(() => {
+    const newCount = isPC ? 3 : isTablet ? 2 : 1;
+    setCardCount(newCount);
+  }, [width]);
 
   useFetchLinks(setLinkCardList, setIsLoading);
 
@@ -88,7 +95,7 @@ const FavoritePage = ({
         {/* 로딩 중일 때 */}
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[...Array(3)].map((_, index) => (
+            {[...Array(cardCount)].map((_, index) => (
               <LinkCardSkeleton key={index} />
             ))}
           </div>
