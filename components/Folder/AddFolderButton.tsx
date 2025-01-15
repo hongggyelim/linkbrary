@@ -20,7 +20,7 @@ export const AddFolderButton = ({
       className={
         !isModal
           ? "md:mt-auto xl:mt-0 text-purple100"
-          : "fixed-bottom w-[120px] h-[35px] rounded-[20px] bg-purple100 text-white hover:bg-purple50"
+          : "fixed-bottom w-[120px] h-[35px] rounded-[20px] bg-purple100 text-white hover:bg-purple50 z-50"
       }
       onClick={() => openModal("AddFolderModal")}
     >

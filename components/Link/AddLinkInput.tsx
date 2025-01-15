@@ -1,6 +1,5 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { FolderListData } from "@/types/folderTypes";
-import { Modal } from "../modal/modalManager/ModalManager";
 import Image from "next/image";
 import SubmitButton from "../SubMitButton";
 import useModalStore from "@/store/useModalStore";
@@ -9,7 +8,7 @@ import toastMessages from "@/lib/toastMessage";
 import { urlRegex } from "@/util/regex";
 
 const AddLinkInput = ({ folderList }: FolderListData) => {
-  const { isOpen, openModal } = useModalStore();
+  const { openModal } = useModalStore();
   const [link, setLink] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,8 +53,6 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
           추가하기
         </SubmitButton>
       </div>
-
-      {isOpen && <Modal />}
     </div>
   );
 };

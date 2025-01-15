@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { parse } from "cookie";
 import { LinkData } from "@/types/linkTypes";
 import { FolderData } from "@/types/folderTypes";
-import { Modal } from "@/components/modal/modalManager/ModalManager";
 import { SearchInput } from "../../components/Search/SearchInput";
 import { useLinkCardStore } from "@/store/useLinkCardStore";
 import axiosInstance from "@/lib/api/axiosInstanceApi";
@@ -22,7 +21,6 @@ import RenderEmptyLinkMessage from "@/components/Link/RenderEmptyLinkMessage";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useFolderName from "@/hooks/useFolderName";
-import LoadingSpinner from "@/components/LoadingSpinner";
 import LinkCardSkeleton from "@/components/skeleton/LinkCardSkeleton";
 
 interface LinkPageProps {
@@ -79,7 +77,6 @@ const LinkPage = ({
 }: LinkPageProps) => {
   const router = useRouter();
   const { search, folder } = router.query;
-  const { isOpen } = useModalStore();
   const { isMobile } = useViewport();
   const { totalCount, linkCardList, setLinkCardList } =
     useLinkCardStore.getState();
@@ -139,7 +136,6 @@ const LinkPage = ({
           )}
         </main>
       </Container>
-      {isOpen && <Modal />}
       {isMobile && (
         <AddFolderButton setFolderList={setFolderList} isModal={true} />
       )}
