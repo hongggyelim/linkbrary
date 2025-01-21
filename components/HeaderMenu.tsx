@@ -74,6 +74,7 @@ const HeaderMenu = () => {
               width={28}
               height={28}
               alt="프로필"
+              className="rounded-full"
             />
             <span className="hidden md:block lg:block">{user?.name}</span>
           </div>
