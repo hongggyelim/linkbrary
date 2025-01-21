@@ -69,7 +69,12 @@ const HeaderMenu = () => {
             onClick={() => setIsOpen(!isOpen)}
             ref={dropdownRef}
           >
-            <Image src={Profile} width={28} height={28} alt="프로필" />
+            <Image
+              src={user.imageSource || Profile}
+              width={28}
+              height={28}
+              alt="프로필"
+            />
             <span className="hidden md:block lg:block">{user?.name}</span>
           </div>
           <div className="absolute top-8 right-0">
