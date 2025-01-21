@@ -2,7 +2,10 @@ import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 
 export const handleCopyUrl = () => {
-  const currentUrl = window.location.href;
-  navigator.clipboard.writeText(currentUrl);
+  // 현재 URL에서 folderId를 추출
+  const url = new URL(location.href);
+  const folderId = url.searchParams.get("folder");
+  const shareUrl = `https://linkbrary-redeeploy.vercel.app/share/${folderId}`;
+  navigator.clipboard.writeText(shareUrl);
   toast.success(toastMessages.success.copyLink);
 };
