@@ -1,6 +1,6 @@
 ## Linkbrary - 코드잇 스프린트 FE 9기
 
-### 배포 사이트 : https://linkbrary-coral.vercel.app/
+### 배포 사이트 : https://linkbrary-redeploy.vercel.app/
 
 ### 프로젝트 소개
 

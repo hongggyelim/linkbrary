@@ -15,7 +15,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://linkbrary-coral.vercel.app" />
+        <meta
+          property="og:url"
+          content="https://linkbrary-redeploy.vercel.app"
+        />
         <meta property="og:title" content="Linkbrary" />
         <meta
           property="og:description"
@@ -23,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           property="og:image"
-          content="https://linkbrary-coral.vercel.app/images/home_main.png"
+          content="https://linkbrary-redeploy.vercel.app/images/home_main.png"
         />
         <meta
           name="viewport"

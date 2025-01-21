@@ -3,7 +3,7 @@ import SubmitButton from "@/components/SubMitButton";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import Link from "next/link";
 import useForm from "@/hooks/useForm";
-import SnsPassword from "@/components/Auth/SnsPassword";
+import SnsSignin from "@/components/Auth/SnsSignin";
 
 const SignupPage = () => {
   const { values, errors, handleChange, handleBlur, handleSubmit } =
@@ -74,7 +74,7 @@ const SignupPage = () => {
           >
             회원가입
           </SubmitButton>
-          <SnsPassword />
+          <SnsSignin />
         </form>
       </AuthLayout>
     </div>
