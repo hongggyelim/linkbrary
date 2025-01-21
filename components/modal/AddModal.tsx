@@ -10,7 +10,7 @@ import toastMessages from "@/lib/toastMessage";
 import { useRouter } from "next/router";
 
 const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
-  const [selectedId, setSelectedId] = useState<number | null>(null);
+  const [selectedId, setSelectedId] = useState<number | null>(list[0].id);
   const { closeModal } = useModalStore();
   const router = useRouter();
 
