@@ -65,11 +65,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             path: "/",
           })
         );
-        res.status(200).json({ message: "회원가입 성공", redirectUrl: "/" });
-        return;
+        return res
+          .status(200)
+          .json({ message: "회원가입 성공", redirectUrl: "/" });
       }
     } catch (signUpError: any) {
-      res.redirect("/login");
+      return res.redirect("/login");
     }
   } catch (error: any) {
     console.error("Error:", error.response?.data || error.message);
