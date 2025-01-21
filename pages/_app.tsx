@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           property="og:image"
-          content="https://linkbrary-redeploy.vercel.app/images/home_main.png"
+          content="https://linkbrary-redeploy.vercel.app/images/thumbnail_2x.png"
         />
         <meta
           name="viewport"
