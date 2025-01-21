@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { FolderListData } from "@/types/folderTypes";
-import { useEffect } from "react";
 
 const FolderTag = ({ folderList }: FolderListData) => {
   const router = useRouter();
@@ -17,9 +16,6 @@ const FolderTag = ({ folderList }: FolderListData) => {
   };
   const isAllSelected = currentFolderId === "" || currentFolderId === undefined;
 
-  useEffect(() => {
-    handleSubmit("");
-  }, []);
   return (
     <ul className="flex flex-wrap gap-[8px] lg:w-[80%] md:w-[80%]">
       <li>

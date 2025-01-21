@@ -6,6 +6,7 @@ import CardsLayout from "@/components/Layout/CardsLayout";
 import Container from "@/components/Layout/Container";
 import LinkCard from "@/components/Link/LinkCard";
 import Pagination from "@/components/Pagination";
+import SharePageActionsMenu from "@/components/Folder/SharePageActionsMenu";
 
 interface SharePageprops {
   folderName: string;
@@ -42,6 +43,9 @@ const SharePage = ({ folderName, linkList, totalCount }: SharePageprops) => {
         <h2 className="text-[32px] md:text-[40px] font-semibold">
           {folderName}
         </h2>
+        <div>
+          <SharePageActionsMenu />
+        </div>
       </div>
       <Container>
         {linkList.length > 0 && (
