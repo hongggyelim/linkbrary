@@ -19,8 +19,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const clientSecret = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET;
     const redirectUri =
       process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI_SIGN_UP || "/";
-    console.log("clientId", clientId);
-    console.log("clientSecret", clientSecret);
     if (!clientId || !clientSecret) {
       return res
         .status(500)
