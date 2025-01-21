@@ -131,24 +131,26 @@ const LinkPage = ({
               </>
             )}
           </div>
-          {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {[...Array(cardCount)].map((_, index) => (
-                <LinkCardSkeleton key={index} />
-              ))}
-            </div>
-          ) : linkCardList.length !== 0 ? (
-            <>
-              <CardsLayout>
-                {linkCardList.map((link) => (
-                  <LinkCard key={link.id} info={link} />
+          <div className="h-[440px]">
+            {isLoading ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[...Array(cardCount)].map((_, index) => (
+                  <LinkCardSkeleton key={index} />
                 ))}
-              </CardsLayout>
-              <Pagination totalCount={totalCount as number} />
-            </>
-          ) : (
-            <RenderEmptyLinkMessage />
-          )}
+              </div>
+            ) : linkCardList.length !== 0 ? (
+              <>
+                <CardsLayout>
+                  {linkCardList.map((link) => (
+                    <LinkCard key={link.id} info={link} />
+                  ))}
+                </CardsLayout>
+                <Pagination totalCount={totalCount as number} />
+              </>
+            ) : (
+              <RenderEmptyLinkMessage />
+            )}
+          </div>
         </main>
       </Container>
       {isMobile && (

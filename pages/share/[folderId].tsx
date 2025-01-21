@@ -39,15 +39,15 @@ export const getServerSideProps = async (
 const SharePage = ({ folderName, linkList, totalCount }: SharePageprops) => {
   return (
     <>
-      <div className="flex justify-center items-center sm:h-[117px] h-[219px] sm:mb-5 mb-10 bg-gray100 text-center">
+      <div className="flex flex-col justify-center items-center sm:h-[117px] h-[219px] sm:mb-5 mb-10 bg-gray100 text-center">
         <h2 className="text-[32px] md:text-[40px] font-semibold">
           {folderName}
         </h2>
-        <div>
-          <SharePageActionsMenu />
-        </div>
       </div>
       <Container>
+        <div className="flex justify-end">
+          <SharePageActionsMenu />
+        </div>
         {linkList.length > 0 && (
           <>
             <CardsLayout>

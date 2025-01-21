@@ -92,27 +92,29 @@ const FavoritePage = ({
             👈 마이링크로 돌아가기
           </button>
         </div>
-        {/* 로딩 중일 때 */}
-        {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[...Array(cardCount)].map((_, index) => (
-              <LinkCardSkeleton key={index} />
-            ))}
-          </div>
-        ) : linkCardList.length > 0 ? (
-          <>
-            <CardsLayout>
-              {linkCardList.length > 0
-                ? linkCardList.map((favorite) => (
-                    <LinkCard key={favorite.id} info={favorite} />
-                  ))
-                : null}
-            </CardsLayout>
-            <Pagination totalCount={totalCount} />
-          </>
-        ) : (
-          <EmptyFavoriteList />
-        )}
+        <div className="h-[440px]">
+          {/* 로딩 중일 때 */}
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {[...Array(cardCount)].map((_, index) => (
+                <LinkCardSkeleton key={index} />
+              ))}
+            </div>
+          ) : linkCardList.length > 0 ? (
+            <>
+              <CardsLayout>
+                {linkCardList.length > 0
+                  ? linkCardList.map((favorite) => (
+                      <LinkCard key={favorite.id} info={favorite} />
+                    ))
+                  : null}
+              </CardsLayout>
+              <Pagination totalCount={totalCount} />
+            </>
+          ) : (
+            <EmptyFavoriteList />
+          )}
+        </div>
       </Container>
     </>
   );

@@ -49,10 +49,8 @@ export default function App({ Component, pageProps }: AppProps) {
       ></script>
 
       <div className="min-h-screen flex flex-col">
-        <div>
-          <Toaster />
-          <Modal />
-        </div>
+        <Toaster />
+        <Modal />
         {!hidePaths.includes(router.pathname) && <Header />}
         <div className="flex-grow">
           <Component {...pageProps} />

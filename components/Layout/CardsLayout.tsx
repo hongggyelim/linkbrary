@@ -6,7 +6,7 @@ interface CardsLayoutProps {
 
 const CardsLayout = ({ children }: CardsLayoutProps) => {
   return (
-    <div className="flex flex-wrap items-center gap-5 md:gap-6 lg:gap-[20px] w-full">
+    <div className="flex flex-wrap justify-center items-center gap-5 md:gap-6 lg:gap-[20px] w-full">
       {children}
     </div>
   );

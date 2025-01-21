@@ -3,7 +3,7 @@ import SocialLinks from "../SocialLinks";
 
 const Footer = () => {
   return (
-    <footer className="bg-black200 pt-8 sm:px-8 pb-[108px] md:px-[104px] lg:px-[104px] flex justify-center">
+    <footer className="bg-black200 py-4 sm:px-8 md:px-[104px] lg:px-[104px] flex justify-center">
       <nav className="relative w-full lg:max-w-[1520px] md:max-w-[800px] sm:max-w-[326px] flex justify-between">
         <p className="text-gray700 sm:absolute sm:top-[60px] leading-[18.4px]">
           ©codeit - 2024

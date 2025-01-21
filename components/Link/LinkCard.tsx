@@ -69,9 +69,13 @@ const LinkCard = ({ info }: LinkCardProps) => {
   };
 
   const handleNavigate = (url: string) => {
-    if (!isDropdownOpen)
-      window.location.href =
-        url.slice(0, 4) === "http" ? url : `https://${url}`;
+    if (!isDropdownOpen) {
+      const formattedUrl = url.slice(0, 4) === "http" ? url : `https://${url}`;
+      const newTab = window.open(formattedUrl, "_blank");
+      if (newTab) {
+        newTab.opener = null;
+      }
+    }
   };
 
   const dropdownItems = [
