@@ -6,9 +6,14 @@ import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { urlRegex } from "@/util/regex";
 import SubmitButton from "../button/SubmitButton";
+import useExpandedStore from "@/store/useExpandedStore";
+import useAuthStore from "@/store/useAuthStore";
 
 const AddLinkInput = ({ folderList }: FolderListData) => {
   const { openModal } = useModalStore();
+  const { toggleExpanded } = useExpandedStore();
+  const { user } = useAuthStore();
+
   const [link, setLink] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +38,12 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
     }
   };
 
+  const handleClickWithoutLogin = () => {
+    if (!user) {
+      toggleExpanded();
+    }
+  };
+
   return (
     <div className="flex bg-white justify-between items-center w-full lg:max-w-[800px] md:max-w-[704px] sm:max-w-[325px] h-[69px] lg:px-5 md:px-5 sm:px-[10px] border border-blue-500 rounded-[10px] md:w-[704px] sm:w-[325px] sm:h-[53px] transition-all">
       <div className="flex">
@@ -40,8 +51,9 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
         <input
           onChange={handleChange}
           onKeyDown={handleKeyDown}
+          onClick={handleClickWithoutLogin}
           value={link}
-          placeholder="링크를 추가해 보세요."
+          placeholder="저장할 링크를 입력하세요"
           className="sm:w-[190px] md:w-[530px] lg:w-[630px] overflow-hidden lg:ml-3 md:ml-3 sm:ml-[8px]"
         />
       </div>

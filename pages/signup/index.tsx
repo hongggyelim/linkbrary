@@ -10,12 +10,12 @@ const SignupPage = () => {
     useAuthForm(true);
 
   return (
-    <div className="bg-gray100 min-h-screen">
+    <div className="bg-gray100 min-h-screen pt-10">
       <AuthLayout>
         <p className="mt-[16px] text-base font-normal">
           이미 회원이신가요?{" "}
           <Link
-            href="/login"
+            href="/"
             className="cursor-pointer text-purple100 underline font-semibold"
           >
             로그인하기

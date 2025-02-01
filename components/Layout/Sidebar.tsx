@@ -6,6 +6,7 @@ import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
 import SubmitButton from "../button/SubmitButton";
 import SnsLogin from "../Auth/SnsLogin";
+import Link from "next/link";
 
 interface LoginType {
   email: string;
@@ -82,15 +83,17 @@ const Sidebar = () => {
           게스트 계정으로 구경하기
         </SubmitButton>
         <SnsLogin className="" />
-        <SubmitButton
-          type="button"
-          width="w-full"
-          height="h-[53px]"
-          className=""
-          // onClick={handleLoginGuest}
-        >
-          SignUp
-        </SubmitButton>
+        <Link href="/signup" className="w-full">
+          <SubmitButton
+            type="button"
+            width="w-full"
+            height="h-[53px]"
+            className=""
+            // onClick={handleLoginGuest}
+          >
+            SignUp
+          </SubmitButton>
+        </Link>
       </form>
     </>
   );

@@ -8,14 +8,14 @@ import Dropdown from "../dropdown/Dropdown";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import Sidebar from "./Sidebar";
 import { bindClass } from "@/util/bindClass";
-import { CiLogin } from "react-icons/ci";
 import { RiLoginCircleLine } from "react-icons/ri";
+import useExpandedStore from "@/store/useExpandedStore";
 
 const HeaderMenu = () => {
   const { user, logout, fetchUserInfo } = useAuthStore();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const { isExpanded, toggleExpanded } = useExpandedStore();
 
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -44,10 +44,10 @@ const HeaderMenu = () => {
         <>
           <div
             className={bindClass(
-              "absolute z-50 right-4",
-              isExpanded ? "ease-in-out transition-transform" : "rotate-180 "
+              "absolute z-50 right-4 ease-in-out transition-transform",
+              isExpanded ? "" : "rotate-180 "
             )}
-            onClick={() => setIsExpanded((prev) => !prev)}
+            onClick={toggleExpanded}
           >
             <RiLoginCircleLine className="size-6" />
           </div>
