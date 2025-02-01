@@ -1,4 +1,3 @@
-import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
 import { Modal } from "@/components/modal/modalManager/ModalManager";
 import "@/styles/globals.css";

@@ -8,7 +8,7 @@ import { SearchInput } from "../../components/Search/SearchInput";
 import { useLinkCardStore } from "@/store/useLinkCardStore";
 import axiosInstance from "@/lib/api/axiosInstanceApi";
 import useModalStore from "@/store/useModalStore";
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/button/Pagination";
 import AddLinkInput from "@/components/Link/AddLinkInput";
 import Container from "@/components/Layout/Container";
 import SearchResultMessage from "@/components/Search/SearchResultMessage";
@@ -21,7 +21,7 @@ import RenderEmptyLinkMessage from "@/components/Link/RenderEmptyLinkMessage";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useFolderName from "@/hooks/useFolderName";
-import LinkCardSkeleton from "@/components/skeleton/LinkCardSkeleton";
+import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
 import toast, { Toaster } from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 

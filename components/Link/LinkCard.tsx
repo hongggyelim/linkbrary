@@ -4,7 +4,7 @@ import { useLinkCardStore } from "@/store/useLinkCardStore";
 import { ensureAbsoluteUrl } from "@/util/ensureAbsoluteUrl";
 import timeAgo from "@/util/timeAgo";
 import Image from "next/image";
-import Dropdown from "../Dropdown";
+import Dropdown from "../dropdown/Dropdown";
 import useModalStore from "@/store/useModalStore";
 import useOutsideClick from "@/hooks/useOutsideClick";
 

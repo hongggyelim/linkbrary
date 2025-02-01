@@ -1,11 +1,11 @@
 import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { FolderListData } from "@/types/folderTypes";
 import Image from "next/image";
-import SubmitButton from "../SubMitButton";
 import useModalStore from "@/store/useModalStore";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { urlRegex } from "@/util/regex";
+import SubmitButton from "../button/SubmitButton";
 
 const AddLinkInput = ({ folderList }: FolderListData) => {
   const { openModal } = useModalStore();

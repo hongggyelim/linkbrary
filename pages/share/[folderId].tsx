@@ -5,7 +5,7 @@ import { getLink } from "../../lib/api/link";
 import CardsLayout from "@/components/Layout/CardsLayout";
 import Container from "@/components/Layout/Container";
 import LinkCard from "@/components/Link/LinkCard";
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/button/Pagination";
 import SharePageActionsMenu from "@/components/Folder/SharePageActionsMenu";
 
 interface SharePageprops {

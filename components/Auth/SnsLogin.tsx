@@ -1,9 +1,15 @@
+import { bindClass } from "@/util/bindClass";
 import Image from "next/image";
 import Link from "next/link";
 
-const SnsLogin = () => {
+const SnsLogin = ({ className = "" }: { className?: string }) => {
   return (
-    <div className="flex items-center justify-between bg-gray300 rounded-lg px-6 py-3 mt-8">
+    <div
+      className={bindClass(
+        "flex items-center justify-between bg-gray300 rounded-lg px-6 py-3 w-full",
+        className
+      )}
+    >
       <span>소셜 로그인</span>
       <div className="flex gap-4">
         <Link

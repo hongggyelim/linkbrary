@@ -1,7 +1,7 @@
 import { FolderItemType } from "@/types/modalTypes";
 import FolderList from "./modalComponents/FolderList";
 import ModalContainer from "./modalComponents/ModalContainer";
-import SubmitButton from "../SubMitButton";
+import SubmitButton from "../button/SubmitButton";
 import { useState } from "react";
 import { postLink } from "@/lib/api/link";
 import useModalStore from "@/store/useModalStore";

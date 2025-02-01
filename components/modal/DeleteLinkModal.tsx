@@ -1,5 +1,5 @@
 import useModalStore from "@/store/useModalStore";
-import SubmitButton from "../SubMitButton";
+import SubmitButton from "../button/SubmitButton";
 import ModalContainer from "./modalComponents/ModalContainer";
 import { useLinkCardStore } from "@/store/useLinkCardStore";
 import toast from "react-hot-toast";

@@ -3,7 +3,7 @@ import ModalContainer from "./modalComponents/ModalContainer";
 import ModalInput from "./modalComponents/ModalInput";
 import useModalStore from "@/store/useModalStore";
 import { putFolder } from "@/lib/api/folder";
-import SubmitButton from "../SubMitButton";
+import SubmitButton from "../button/SubmitButton";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 

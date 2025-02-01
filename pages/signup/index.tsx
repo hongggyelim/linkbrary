@@ -1,12 +1,12 @@
 import AuthInput from "@/components/Auth/AuthInput";
-import SubmitButton from "@/components/SubMitButton";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import Link from "next/link";
 import useAuthForm from "@/hooks/useForm";
 import SnsSignin from "@/components/Auth/SnsSignin";
+import SubmitButton from "@/components/button/SubmitButton";
 
 const SignupPage = () => {
-  const { values, errors, handleChange, handleBlur, handleSubmit } =
+  const { values, errors, handleChange, handleBlur, handleSubmitForm } =
     useAuthForm(true);
 
   return (
@@ -24,7 +24,7 @@ const SignupPage = () => {
         <form
           className="w-full sm:max-w-[325px] md:max-w-[400px] lg:max-w-[400px] mt-[30px] h-full"
           aria-labelledby="login-form"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmitForm}
         >
           <AuthInput
             text="이메일"

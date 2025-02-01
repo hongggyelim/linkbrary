@@ -1,6 +1,6 @@
 import { deleteFolder } from "@/lib/api/folder";
 import useModalStore from "@/store/useModalStore";
-import SubmitButton from "../SubMitButton";
+import SubmitButton from "../button/SubmitButton";
 import ModalContainer from "./modalComponents/ModalContainer";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";

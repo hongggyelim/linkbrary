@@ -6,10 +6,10 @@ import axiosInstance from "@/lib/api/axiosInstanceApi";
 import CardsLayout from "@/components/Layout/CardsLayout";
 import Container from "@/components/Layout/Container";
 import LinkCard from "@/components/Link/LinkCard";
-import Pagination from "@/components/Pagination";
+import Pagination from "@/components/button/Pagination";
 import useFetchLinks from "@/hooks/useFetchLinks";
 import EmptyFavoriteList from "@/components/Favorite/EmptyFavoriteList";
-import LinkCardSkeleton from "@/components/skeleton/LinkCardSkeleton";
+import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
 import useViewport from "@/hooks/useViewport";
 
 interface FavoriteDataType {

@@ -1,6 +1,6 @@
 import { FaAngleUp } from "react-icons/fa6";
 
-const ToTopBtn = () => {
+const ToTopButton = () => {
   const handleClickToTop = () => {
     window.scrollTo({ top: 0 });
   };
@@ -17,4 +17,4 @@ const ToTopBtn = () => {
     </>
   );
 };
-export default ToTopBtn;
+export default ToTopButton;

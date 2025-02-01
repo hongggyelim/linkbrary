@@ -1,4 +1,4 @@
-import Button from "@/components/SubMitButton";
+import SubmitButton from "@/components/button/SubmitButton";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -12,14 +12,14 @@ const notFoundPage = () => {
       <p className="text-[16px] mb-3">
         죄송합니다. 존재하지 않는 페이지입니다.
       </p>
-      <Button
+      <SubmitButton
         width="w-[100px] h-[48px]"
         onClick={() => {
           router.push("/");
         }}
       >
         홈으로 이동
-      </Button>
+      </SubmitButton>
     </div>
   );
 };

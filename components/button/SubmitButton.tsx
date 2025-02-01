@@ -1,5 +1,5 @@
 import React, { ReactNode, ButtonHTMLAttributes, useState } from "react";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
