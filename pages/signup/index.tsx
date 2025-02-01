@@ -4,10 +4,12 @@ import Link from "next/link";
 import useAuthForm from "@/hooks/useForm";
 import SnsSignin from "@/components/Auth/SnsSignin";
 import SubmitButton from "@/components/button/SubmitButton";
+import useExpandedStore from "@/store/useExpandedStore";
 
 const SignupPage = () => {
   const { values, errors, handleChange, handleBlur, handleSubmitForm } =
     useAuthForm(true);
+  const { setExpanded } = useExpandedStore();
 
   return (
     <div className="bg-gray100 min-h-screen pt-10">
@@ -17,6 +19,7 @@ const SignupPage = () => {
           <Link
             href="/"
             className="cursor-pointer text-purple100 underline font-semibold"
+            onClick={setExpanded}
           >
             로그인하기
           </Link>
