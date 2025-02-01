@@ -48,14 +48,11 @@ export default function App({ Component, pageProps }: AppProps) {
         src="https://developers.kakao.com/sdk/js/kakao.min.js"
       ></script>
 
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen">
         <Toaster />
         <Modal />
         {!hidePaths.includes(router.pathname) && <Header />}
-        <div className="flex-grow">
-          <Component {...pageProps} />
-        </div>
-        {!hidePaths.includes(router.pathname) && <Footer />}
+        <Component {...pageProps} />
       </div>
     </>
   );

@@ -7,6 +7,7 @@ import sectionShare from "@/public/images/section_share.png";
 import sectionSearch from "@/public/images/section_search.png";
 import { useRouter } from "next/router";
 import useAuthStore from "@/store/useAuthStore";
+import AddLinkInput from "@/components/Link/AddLinkInput";
 
 const sectionStyle =
   "flex flex-col md:flex-row md:items-center md:gap-[51px] lg:flex-row lg:items-center lg:gap-[157px]";
@@ -31,111 +32,14 @@ const HomePage = () => {
   };
 
   return (
-    <main>
-      <div className="flex flex-col items-center bg-gray100">
-        <h2 className="mt-[28px] text-[32px] leading-[42px] font-bold md:mt-[40px] lg:mt-[70px] md:text-[64px] md:leading-[80px] lg:text-[64px] lg:leading-[80px] text-center">
-          <span className="gradient-text">세상의 모든 정보</span>
-          를<br /> 쉽게 저장하고
-          <br className="lg:hidden" />
-          <span className="hidden lg:inline">&nbsp;</span>관리해 보세요
-        </h2>
-        <SubmitButton
-          onClick={handleClick}
-          className="sm:mt-[24px] sm:w-[200px] sm:h-[50px] sm:text-[14px] md:mt-[40px] md:w-[350px] md:h-[53px] md:text-[18px] lg:mt-[40px] lg:w-[350px] lg:h-[53px] lg:text-[18px]"
-        >
-          링크 추가하기
-        </SubmitButton>
-        <Image
-          src={HomeMain}
-          width={1118}
-          height={540}
-          alt="배너"
-          className="mt-[37.56px] w-[302.79px] h-[146.44px] md:mt-[69.07px] md:w-[650.3px] md:h-[313.93px] lg:mt-[90px] lg:w-[1118px] lg:h-[540px]"
-        />
-      </div>
-
-      <div className="flex flex-col items-center gap-[80px] px-[33px] pt-[40px] pb-[80px] md:pt-[80px] md:pb-[170px] md:gap-[100px] lg:pt-[120px]">
-        <section className={sectionStyle}>
-          <div className={sectionContent}>
-            <strong className={sectionTitleStyle}>
-              <span className="gradient-text">원하는 링크</span>를 저장하세요
-            </strong>
-            <em className={sectionDescriptionStyle}>
-              나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷,
-              <br className="sm:block md:hidden" /> 기억하고 싶은 모든 것을 한
-              공간에 저장하세요.
-            </em>
-          </div>
-          <Image
-            src={sectionLink}
-            width={550}
-            height={450}
-            alt="링크"
-            className={sectionImageStyle}
-          />
-        </section>
-
-        <section
-          className={`${sectionStyle} md:flex-row-reverse lg:flex-row-reverse`}
-        >
-          <div className={sectionContent}>
-            <strong className={sectionTitleStyle}>
-              링크를 폴더로 <span className="gradient-text">관리</span>하세요
-            </strong>
-            <em className={sectionDescriptionStyle}>
-              나만의 폴더를 무제한으로 만들고 다양하게 활용할 수
-              <br className="sm:block md:hidden" /> 있습니다.
-            </em>
-          </div>
-          <Image
-            src={sectionFolder}
-            width={550}
-            height={450}
-            alt="폴더"
-            className={sectionImageStyle}
-          />
-        </section>
-
-        <section className={sectionStyle}>
-          <div className={sectionContent}>
-            <strong className={sectionTitleStyle}>
-              저장한 링크를 <span className="gradient-text">공유</span>해 보세요
-            </strong>
-            <em className={sectionDescriptionStyle}>
-              여러 링크를 폴더에 담고 공유할 수 있습니다. 가족,
-              <br className="sm:block md:hidden" /> 친구, 동료들에게 쉽고 빠르게
-              링크를 공유해 보세요.
-            </em>
-          </div>
-          <Image
-            src={sectionShare}
-            width={550}
-            height={450}
-            alt="공유"
-            className={sectionImageStyle}
-          />
-        </section>
-
-        <section
-          className={`${sectionStyle} md:flex-row-reverse lg:flex-row-reverse`}
-        >
-          <div className={sectionContent}>
-            <strong className={sectionTitleStyle}>
-              저장한 링크를 <span className="gradient-text">검색</span>해 보세요
-            </strong>
-            <em className={sectionDescriptionStyle}>
-              중요한 정보들을 검색으로 쉽게 찾아보세요.
-            </em>
-          </div>
-          <Image
-            src={sectionSearch}
-            width={550}
-            height={450}
-            alt="검색"
-            className={sectionImageStyle}
-          />
-        </section>
-      </div>
+    <main className="flex flex-col items-center bg-gray100 h-[calc(100dvh-64px)] md:h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)] relative">
+      <h2 className="mt-20 mb-10 text-[32px] leading-[42px] font-bold text-center">
+        <span className="gradient-text">세상의 모든 정보</span>
+        를<br /> 쉽게 저장하고
+        <br className="lg:hidden" />
+        <span className="hidden lg:inline">&nbsp;</span>관리해 보세요
+      </h2>
+      <AddLinkInput folderList={[]} />
     </main>
   );
 };

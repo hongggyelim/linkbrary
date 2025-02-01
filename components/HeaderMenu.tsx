@@ -3,16 +3,21 @@ import Profile from "@/public/icons/profile.svg";
 import Star from "@/public/icons/star.png";
 import Link from "next/link";
 import SubmitButton from "./SubMitButton";
-import { useRouter } from "next/router";
 import useAuthStore from "@/store/useAuthStore";
 import { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import useOutsideClick from "@/hooks/useOutsideClick";
+// import useForm from "@/hooks/useForm";
+import AuthInput from "./Auth/AuthInput";
+import { bindClass } from "@/util/bindClass";
+import SnsLogin from "./Auth/SnsLogin";
+import { useForm } from "react-hook-form";
 
 const HeaderMenu = () => {
   const { user, logout, fetchUserInfo } = useAuthStore();
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useOutsideClick(dropdownRef, () => {
@@ -35,20 +40,78 @@ const HeaderMenu = () => {
     },
   ];
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
+
+  const handleLoginGuest = () => {
+    setValue("email", "try@link.com");
+    setValue("password", "123qweQWE!");
+  };
+
   return (
     <>
       {!user ? (
-        <SubmitButton
-          onClick={() => {
-            router.push("/login");
-          }}
-          width="w-[80px] md:w-[128px] lg:w-[128px]"
-          height="h-[37px] md:h-[53px] lg:h-[53px]"
-          size="text-[14px] md:text-[18px] lg:text-[18px]"
-          type="button"
-        >
-          로그인
-        </SubmitButton>
+        <form className="flex items-center gap-3" aria-labelledby="login-form">
+          <div
+            className={bindClass(
+              isExpanded ? "block" : "hidden",
+              "flex items-center"
+            )}
+          >
+            <AuthInput
+              text="이메일"
+              {...register("email")}
+              type="text"
+              placeholder="이메일을 입력해주세요."
+              error={errors.email as string | undefined}
+            />
+            <AuthInput
+              text="비밀번호"
+              {...register("password")}
+              type="password"
+              placeholder="비밀번호를 입력해주세요."
+              error={errors.password as string | undefined}
+            />
+          </div>
+          <div
+            className="cursor-pointer"
+            onClick={() => setIsExpanded((prev) => !prev)}
+          >
+            로그인하러 가기
+          </div>
+
+          <SubmitButton
+            type="submit"
+            width="w-10"
+            height="h-[53px]"
+            className="mt-[30px]"
+          >
+            Login
+          </SubmitButton>
+          {/* <SnsLogin /> */}
+          <SubmitButton
+            type="submit"
+            width="w-10"
+            height="h-[53px]"
+            className="mt-[30px]"
+            onClick={handleLoginGuest}
+          >
+            게스트
+          </SubmitButton>
+          <SubmitButton
+            type="submit"
+            width="w-10"
+            height="h-[53px]"
+            className="mt-[30px]"
+            onClick={handleLoginGuest}
+          >
+            SignUp
+          </SubmitButton>
+        </form>
       ) : (
         <div className="relative flex items-center gap-[24px]">
           <Link
@@ -78,7 +141,7 @@ const HeaderMenu = () => {
             />
             <span className="hidden md:block lg:block">{user?.name}</span>
           </div>
-          <div className="absolute top-8 right-0">
+          <div className="absolute top-8 right-0 z-50">
             {isOpen && <Dropdown items={dropdownItems} />}
           </div>
         </div>
