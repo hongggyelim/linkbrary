@@ -7,6 +7,7 @@ import useAuthStore from "@/store/useAuthStore";
 import SubmitButton from "../button/SubmitButton";
 import SnsLogin from "../Auth/SnsLogin";
 import Link from "next/link";
+import useExpandedStore from "@/store/useExpandedStore";
 
 interface LoginType {
   email: string;
@@ -20,6 +21,7 @@ const Sidebar = () => {
     setValue,
     handleSubmit,
   } = useForm<LoginType>();
+  const { isExpanded } = useExpandedStore();
 
   const onSubmit = async (data: LoginType) => {
     try {
@@ -45,7 +47,10 @@ const Sidebar = () => {
       <div className="bg-black bg-opacity-50 absolute z-30 inset-0 w-screen h-dvh"></div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="p-6 pt-12 flex flex-col gap-3 items-center bg-white shadow-lg absolute h-dvh top-0 right-0 z-40"
+        className={bindClass(
+          "p-6 pt-12 flex flex-col gap-3 items-center bg-white shadow-lg absolute h-dvh top-0 right-0 z-40 transition-transform",
+          isExpanded ? "animate-slideIn" : "animate-slideOut"
+        )}
         aria-labelledby="login-form"
       >
         <div className={bindClass("flex flex-col mt-4")}>
@@ -70,30 +75,22 @@ const Sidebar = () => {
           height="h-[53px]"
           className=""
         >
-          Login
+          로그인
         </SubmitButton>
-        {/* <SnsLogin /> */}
-        <SubmitButton
-          type="button"
-          width="w-full"
-          height="h-[53px]"
-          className=""
+        <SnsLogin
+          className="font-[600] font-white"
           onClick={handleLoginGuest}
-        >
-          게스트 계정으로 구경하기
-        </SubmitButton>
-        <SnsLogin className="" />
-        <Link href="/signup" className="w-full">
-          <SubmitButton
-            type="button"
-            width="w-full"
-            height="h-[53px]"
-            className=""
-            // onClick={handleLoginGuest}
+        />
+
+        <p className="text-base font-normal">
+          아직 회원이 아니신가요?{" "}
+          <Link
+            href="/signup"
+            className="cursor-pointer text-purple100 underline font-semibold"
           >
-            SignUp
-          </SubmitButton>
-        </Link>
+            회원가입하기
+          </Link>
+        </p>
       </form>
     </>
   );

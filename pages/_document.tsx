@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="ko">
       <Head />
-      <body className="antialiased scrollbar-custom">
+      <body className="antialiased scrollbar-custom overflow-x-hidden">
         <Main />
         <NextScript />
       </body>
