@@ -40,9 +40,10 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
 
   const handleClickWithout = () => {
     if (!user) {
+      toast.error("로그인이 필요합니다.");
       toggleExpanded();
     }
-    if (!folderList || folderList.length < 1) {
+    if (user && (!folderList || folderList.length < 1)) {
       openModal("AddFolderModal");
     }
     console.log(folderList);

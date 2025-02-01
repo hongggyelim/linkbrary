@@ -25,6 +25,7 @@ import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
 import toast, { Toaster } from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
+import { bindClass } from "@/util/bindClass";
 
 interface LinkPageProps {
   linkList: LinkData[];
@@ -39,39 +40,47 @@ export const getServerSideProps = async (
   const { req } = context;
   const cookies = parse(req.headers.cookie || "");
   const accessToken = cookies.accessToken;
-  if (accessToken) {
-    const fetchData = async (endpoint: string) => {
-      const res = await axiosInstance.get(endpoint, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      return res.data;
+  if (!accessToken) {
+    // 토큰이 없으면 빈 데이터와 함께 렌더링
+    return {
+      props: {
+        linkList: [], // 빈 배열 반환
+        folderList: [], // 빈 배열 반환
+        totalCount: 0, // 0으로 설정
+      },
     };
+  }
+  const fetchData = async (endpoint: string) => {
+    const res = await axiosInstance.get(endpoint, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    return res.data;
+  };
 
-    try {
-      const [links, folders] = await Promise.all([
-        fetchData("/links"),
-        fetchData("/folders"),
-      ]);
+  try {
+    const [links, folders] = await Promise.all([
+      fetchData("/links"),
+      fetchData("/folders"),
+    ]);
 
-      return {
-        props: {
-          linkList: links.list || [],
-          folderList: folders || [],
-          totalCount: links.totalCount || 0,
-        },
-      };
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      return {
-        props: {
-          linkList: [],
-          folderList: [],
-          totalCount: 0,
-        },
-      };
-    }
+    return {
+      props: {
+        linkList: links.list || [],
+        folderList: folders || [],
+        totalCount: links.totalCount || 0,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        linkList: [],
+        folderList: [],
+        totalCount: 0,
+      },
+    };
   }
 };
 
@@ -116,7 +125,14 @@ const LinkPage = ({
   return (
     <>
       {/* 로그인 여부와 상관없이 보여주는 부분 */}
-      <div className="bg-gray100 w-full flex flex-col pb-10 justify-center items-center">
+      <div
+        className={bindClass(
+          "bg-gray100 w-full flex flex-col pb-10 items-center relative",
+          user
+            ? "justify-center"
+            : "h-[calc(100dvh-64px)] md:h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)] justify-start"
+        )}
+      >
         <h2 className="mt-20 mb-10 text-[32px] leading-[42px] font-bold text-center bg-transparent">
           <span className="gradient-text">세상의 모든 정보</span>
           를<br /> 쉽게 저장하고

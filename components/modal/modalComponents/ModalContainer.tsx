@@ -25,7 +25,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
   return (
     <div
       onClick={onClickBackDrop}
-      className=" z-30 fixed top-0 left-0 flex justify-center items-center bg-black/40 h-screen w-screen"
+      className="overflow-hidden z-30 fixed top-0 left-0 flex justify-center items-center bg-black/40 h-screen w-screen"
     >
       <div
         ref={modalRef}
@@ -39,8 +39,8 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
             </div>
           )}
           {subtitle && (
-            <div className="text-sm leading-[22px] font-normal text-gray400">
-              {subtitle}
+            <div className="text-sm leading-[22px] font-normal text-gray400 overflow-hidden">
+              {subtitle.slice(0, 30) + "..."}
             </div>
           )}
         </div>

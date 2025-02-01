@@ -25,7 +25,7 @@ export const SearchInput = () => {
 
   const handleClick = () => {
     setValue("");
-    router.push("/link");
+    router.push("/");
   };
 
   return (

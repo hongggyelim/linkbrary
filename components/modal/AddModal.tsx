@@ -27,7 +27,7 @@ const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
       try {
         await postLink(body);
         toast.success(toastMessages.success.addLink);
-        router.push(`/link?folder=${selectedId}`);
+        router.push(`/?folder=${selectedId}`);
       } catch (error) {
         toast.error(toastMessages.error.addLink);
       } finally {

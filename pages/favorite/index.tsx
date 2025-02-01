@@ -76,7 +76,7 @@ const FavoritePage = ({
 
   // 마이링크 페이지로 돌아감
   const returnButton = () => {
-    router.push(`/link`);
+    router.push(`/`);
   };
 
   return (
@@ -89,7 +89,7 @@ const FavoritePage = ({
       <Container>
         <div className="flex justify-end">
           <button onClick={returnButton} className="mb-5 text-purple100">
-            👈 마이링크로 돌아가기
+            ◀ 마이링크로 돌아가기
           </button>
         </div>
         <div className="h-[440px]">
