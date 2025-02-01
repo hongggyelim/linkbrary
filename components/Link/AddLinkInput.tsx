@@ -38,10 +38,14 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
     }
   };
 
-  const handleClickWithoutLogin = () => {
+  const handleClickWithout = () => {
     if (!user) {
       toggleExpanded();
     }
+    if (!folderList || folderList.length < 1) {
+      openModal("AddFolderModal");
+    }
+    console.log(folderList);
   };
 
   return (
@@ -51,7 +55,7 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
         <input
           onChange={handleChange}
           onKeyDown={handleKeyDown}
-          onClick={handleClickWithoutLogin}
+          onClick={handleClickWithout}
           value={link}
           placeholder="저장할 링크를 입력하세요"
           className="sm:w-[190px] md:w-[530px] lg:w-[630px] overflow-hidden lg:ml-3 md:ml-3 sm:ml-[8px]"
