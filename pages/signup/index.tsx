@@ -2,12 +2,12 @@ import AuthInput from "@/components/Auth/AuthInput";
 import SubmitButton from "@/components/SubMitButton";
 import AuthLayout from "@/components/Layout/AuthLayout";
 import Link from "next/link";
-import useForm from "@/hooks/useForm";
+import useAuthForm from "@/hooks/useForm";
 import SnsSignin from "@/components/Auth/SnsSignin";
 
 const SignupPage = () => {
   const { values, errors, handleChange, handleBlur, handleSubmit } =
-    useForm(true);
+    useAuthForm(true);
 
   return (
     <div className="bg-gray100 min-h-screen">

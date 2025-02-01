@@ -1,4 +1,4 @@
-import useForm from "@/hooks/useForm";
+import useAuthForm from "@/hooks/useForm";
 import AuthInput from "@/components/Auth/AuthInput";
 import SnsLogin from "@/components/Auth/SnsLogin";
 import SubmitButton from "@/components/SubMitButton";
@@ -9,8 +9,8 @@ import useAuthStore from "@/store/useAuthStore";
 import { useEffect } from "react";
 
 const LoginPage = () => {
-  const { values, errors, handleChange, handleBlur, handleSubmit } =
-    useForm(false);
+  const { values, errors, handleChange, handleBlur, handleSubmitForm } =
+    useAuthForm(false);
   const router = useRouter();
   const { user } = useAuthStore();
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
             width="w-full"
             height="h-[53px]"
             className="mt-[30px]"
-            onClick={handleSubmit}
+            onClick={handleSubmitForm}
           >
             로그인
           </SubmitButton>

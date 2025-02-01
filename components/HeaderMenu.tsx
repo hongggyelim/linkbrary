@@ -7,14 +7,23 @@ import useAuthStore from "@/store/useAuthStore";
 import { useEffect, useRef, useState } from "react";
 import Dropdown from "./Dropdown";
 import useOutsideClick from "@/hooks/useOutsideClick";
-// import useForm from "@/hooks/useForm";
 import AuthInput from "./Auth/AuthInput";
 import { bindClass } from "@/util/bindClass";
 import SnsLogin from "./Auth/SnsLogin";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import toastMessages from "@/lib/toastMessage";
 
 const HeaderMenu = () => {
-  const { user, logout, fetchUserInfo } = useAuthStore();
+  const { user, logout, login, fetchUserInfo } = useAuthStore();
+
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    handleSubmit,
+  } = useForm<{ email: string; password: string }>();
+
   const [isOpen, setIsOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -39,23 +48,33 @@ const HeaderMenu = () => {
       onClick: logout,
     },
   ];
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const onSubmit = async (data: { email: string; password: string }) => {
+    try {
+      const response = await login(data);
+      if (response) {
+        toast.success(toastMessages.success.login);
+      } else {
+        toast.error(toastMessages.error.login);
+      }
+    } catch (error) {
+      toast.error(error as string);
+    }
+  };
 
   const handleLoginGuest = () => {
-    setValue("email", "try@link.com");
-    setValue("password", "123qweQWE!");
+    setValue("email", process.env.NEXT_PUBLIC_TEST_ID as string);
+    setValue("password", process.env.NEXT_PUBLIC_TEST_PW as string);
+    handleSubmit(onSubmit)();
   };
 
   return (
     <>
       {!user ? (
-        <form className="flex items-center gap-3" aria-labelledby="login-form">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="flex items-center gap-3"
+          aria-labelledby="login-form"
+        >
           <div
             className={bindClass(
               isExpanded ? "block" : "hidden",
@@ -83,7 +102,6 @@ const HeaderMenu = () => {
           >
             로그인하러 가기
           </div>
-
           <SubmitButton
             type="submit"
             width="w-10"
@@ -94,7 +112,7 @@ const HeaderMenu = () => {
           </SubmitButton>
           {/* <SnsLogin /> */}
           <SubmitButton
-            type="submit"
+            type="button"
             width="w-10"
             height="h-[53px]"
             className="mt-[30px]"
@@ -103,11 +121,11 @@ const HeaderMenu = () => {
             게스트
           </SubmitButton>
           <SubmitButton
-            type="submit"
+            type="button"
             width="w-10"
             height="h-[53px]"
             className="mt-[30px]"
-            onClick={handleLoginGuest}
+            // onClick={handleLoginGuest}
           >
             SignUp
           </SubmitButton>

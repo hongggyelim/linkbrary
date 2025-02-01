@@ -4,7 +4,6 @@ import { postSignUp } from "@/lib/api/auth";
 import useAuthStore from "@/store/useAuthStore";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
-import { getUserInfo } from "@/lib/api/user";
 
 interface FormValues {
   email: string;
@@ -20,7 +19,7 @@ const INITIAL_VALUES: FormValues = {
   passwordConfirm: "",
 };
 
-const useForm = (isSignUp = false) => {
+const useAuthForm = (isSignUp = false) => {
   const [values, setValues] = useState<FormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<FormValues>(INITIAL_VALUES);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -83,7 +82,7 @@ const useForm = (isSignUp = false) => {
     }
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmitForm = async (e: FormEvent) => {
     e.preventDefault();
     if (isFormInvalid() || isLoading) return;
 
@@ -144,10 +143,10 @@ const useForm = (isSignUp = false) => {
     errors,
     handleChange,
     handleBlur,
-    handleSubmit,
+    handleSubmitForm,
     isFormInvalid,
     isLoading,
   };
 };
 
-export default useForm;
+export default useAuthForm;
