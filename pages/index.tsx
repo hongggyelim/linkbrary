@@ -27,6 +27,7 @@ import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
 import { bindClass } from "@/util/bindClass";
 import LinkHere from "@/components/home/LinkHere";
+import axios from "axios";
 
 interface LinkPageProps {
   linkList: LinkData[];
@@ -116,13 +117,28 @@ const LinkPage = ({
   // 링크페이지의 query가 바뀌면 새로운 리스트로 업데이트 해주는 훅
   useFetchLinks(setLinkCardList, setIsLoading);
 
+  useEffect(() => {
+    const fetchFolders = async () => {
+      try {
+        const response = await axios.get("/api/folders"); // 폴더 목록 요청
+        setFolderList(response.data || []);
+      } catch (error) {
+        console.error("폴더 목록 불러오기 실패", error);
+      }
+    };
+
+    if (user) {
+      fetchFolders(); // 로그인 후 폴더 목록 요청
+    }
+  }, [user]); // user가 변경될 때마다 실행
+
   // 로그인한 상태에서만, 생성된 폴더가 없으면 폴더 생성 모달 띄워주기
   useEffect(() => {
     if (user && folderList.length === 0) {
       toast.success(toastMessages.success.addFolderInfo);
       openModal("AddFolderModal");
     }
-  }, []);
+  }, [user, folderList]);
   return (
     <>
       {/* 로그인 여부와 상관없이 보여주는 부분 */}
