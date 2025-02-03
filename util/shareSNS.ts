@@ -15,8 +15,8 @@ export const handleShareKakao = () => {
     Kakao.Share.sendDefault({
       objectType: "feed",
       content: {
-        title: "나만의 링크 모음",
-        description: "나에게 필요한 링크만 모아 두었어요!",
+        title: "Link, Here",
+        description: "저장한 링크를 확인해보세요!",
         imageUrl: "https://linkhere.vercel.app/images/thumbnail_box.png", // 배포 후 실제 도메인으로 변경 필요
         link: {
           mobileWebUrl: `https://linkhere.vercel.app/share/${folderId}`,

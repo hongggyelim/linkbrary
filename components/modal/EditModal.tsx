@@ -19,7 +19,12 @@ const EditModal = ({
   const { closeModal } = useModalStore();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    if (newValue.length > 5) {
+      toast.error(toastMessages.error.limitFolderNameLength);
+    } else {
+      setValue(newValue);
+    }
   };
   const handleSubmit = async () => {
     const body = {
