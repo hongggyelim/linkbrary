@@ -16,10 +16,10 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://linkhere.vercel.app" />
-        <meta property="og:title" content="Linkbrary" />
+        <meta property="og:title" content="LinkHere" />
         <meta
           property="og:description"
-          content="나만의 링크를 관리하는 Linkbrary"
+          content="저장한 링크 어디있지? Link, Here!"
         />
         <meta
           property="og:image"
@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
           name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
-        <title>Linkbrary</title>
+        <title>LinkHere</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1.0"
