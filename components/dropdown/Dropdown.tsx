@@ -16,7 +16,7 @@ const Dropdown = ({ items }: DropdownProps) => {
     "block w-full py-2 text-sm hover:bg-yellow200 hover:text-orange100";
 
   return (
-    <div className="absolute top-[17px] right-0 flex flex-col gap-[2px] min-w-[100px] bg-white shadow-lg rounded">
+    <div className="absolute top-[17px] right-0 flex flex-col gap-[2px] min-w-[100px] bg-white shadow-lg rounded z-20">
       {items.map((item) =>
         // href가 있으면 Link로 렌더링
         item.href ? (

@@ -39,7 +39,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
             </div>
           )}
           {subtitle && (
-            <div className="text-sm leading-[22px] font-normal text-yellow400 overflow-hidden">
+            <div className="text-sm leading-[22px] font-normal text-orange100 overflow-hidden">
               {subtitle.slice(0, 30) + "..."}
             </div>
           )}

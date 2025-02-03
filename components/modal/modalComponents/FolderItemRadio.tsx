@@ -34,7 +34,7 @@ const FolderItemRadio = ({
           className="opacity-0"
           id={String(id)}
         />
-        <div className="text-yellow400 text-sm">{linkCount}개 링크</div>
+        <div className="text-orange100 text-sm">{linkCount}개 링크</div>
       </div>
       {isSelected && (
         <div>

@@ -20,8 +20,8 @@ const ModalInput = ({
       value={value}
       onChange={onChange}
       className={bindClass(
-        "w-full rounded-lg border border-yellow300 py-[18px] px-[15px] mb-6 text-black300",
-        "placeholder:text-base placeholder:text-yellow400",
+        "w-full rounded-lg border border-orange100 py-[18px] px-[15px] mb-6 text-black300",
+        "placeholder:text-base placeholder:text-orange100",
         "focus:outline-1px focus:outline-orange100"
       )}
       placeholder={placeholder}

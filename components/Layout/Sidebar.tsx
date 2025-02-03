@@ -9,6 +9,7 @@ import SnsLogin from "../Auth/SnsLogin";
 import Link from "next/link";
 import useExpandedStore from "@/store/useExpandedStore";
 import { useEffect } from "react";
+import useLoginLoading from "@/store/useLoginLoading";
 
 interface LoginType {
   email: string;
@@ -23,7 +24,9 @@ const Sidebar = () => {
     handleSubmit,
   } = useForm<LoginType>();
   const { isExpanded, toggleExpanded, setClosed } = useExpandedStore();
+  const { isLoading } = useLoginLoading();
   const { user } = useAuthStore();
+
   const onSubmit = async (data: LoginType) => {
     try {
       const response = await login(data);
@@ -37,7 +40,7 @@ const Sidebar = () => {
     }
   };
   useEffect(() => {
-    if (user) setClosed;
+    if (user) setClosed();
   }, [user]);
 
   const handleLoginGuest = () => {
@@ -77,12 +80,7 @@ const Sidebar = () => {
             error={errors.password as string | undefined}
           />
         </div>
-        <SubmitButton
-          type="submit"
-          width="w-full"
-          height="h-[53px]"
-          className=""
-        >
+        <SubmitButton type="submit" width="w-full" height="h-[53px]">
           로그인
         </SubmitButton>
         <SnsLogin
@@ -99,6 +97,11 @@ const Sidebar = () => {
             회원가입하기
           </Link>
         </p>
+        {/* {isLoading && (
+          <div className="bg-black bg-opacity-50 size-full absolute top-0 right-0 text-white flex items-center justify-center text-[20px]">
+            로그인 중입니다...
+          </div>
+        )} */}
       </form>
     </>
   );

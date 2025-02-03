@@ -170,13 +170,16 @@ const LinkPage = ({
                   </>
                 )}
               </div>
-              <div className="py-10">
+              <div className="">
                 {isLoading ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {[...Array(cardCount)].map((_, index) => (
-                      <LinkCardSkeleton key={index} />
-                    ))}
-                  </div>
+                  <>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {[...Array(cardCount)].map((_, index) => (
+                        <LinkCardSkeleton key={index} />
+                      ))}
+                    </div>
+                    <Pagination totalCount={3} />
+                  </>
                 ) : linkCardList.length !== 0 ? (
                   <>
                     <CardsLayout>
