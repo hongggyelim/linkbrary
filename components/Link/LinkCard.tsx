@@ -31,7 +31,7 @@ const LinkCard = ({ info }: LinkCardProps) => {
   const createdTime = timeAgo(info.createdAt);
 
   const router = useRouter();
-  const onlyLinkPage = router.pathname === "/link";
+  const onlyLinkPage = router.pathname === "/";
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // 모달이 열릴 때 드롭다운 닫기
