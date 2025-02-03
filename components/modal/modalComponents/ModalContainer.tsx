@@ -25,7 +25,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
   return (
     <div
       onClick={onClickBackDrop}
-      className="overflow-hidden z-30 fixed top-0 left-0 flex justify-center items-center bg-black/40 h-screen w-screen"
+      className="overflow-hidden z-30 fixed top-0 left-0 flex justify-center items-center bg-black/40 h-screen w-screen animate-fadein"
     >
       <div
         ref={modalRef}

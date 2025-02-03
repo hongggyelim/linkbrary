@@ -10,6 +10,7 @@ import Link from "next/link";
 import useExpandedStore from "@/store/useExpandedStore";
 import { useEffect } from "react";
 import useLoginLoading from "@/store/useLoginLoading";
+import LoginLoadingSpinner from "../loadingSpinner/LoginLoadingSpinner";
 
 interface LoginType {
   email: string;
@@ -24,11 +25,12 @@ const Sidebar = () => {
     handleSubmit,
   } = useForm<LoginType>();
   const { isExpanded, toggleExpanded, setClosed } = useExpandedStore();
-  const { isLoading } = useLoginLoading();
+  const { isLoading, setIsLoading, setIsDone } = useLoginLoading();
   const { user } = useAuthStore();
 
   const onSubmit = async (data: LoginType) => {
     try {
+      setIsLoading();
       const response = await login(data);
       if (response) {
         toast.success(toastMessages.success.login);
@@ -37,6 +39,8 @@ const Sidebar = () => {
       }
     } catch (error) {
       toast.error(error as string);
+    } finally {
+      setIsDone();
     }
   };
   useEffect(() => {
@@ -97,11 +101,11 @@ const Sidebar = () => {
             회원가입하기
           </Link>
         </p>
-        {/* {isLoading && (
-          <div className="bg-black bg-opacity-50 size-full absolute top-0 right-0 text-white flex items-center justify-center text-[20px]">
-            로그인 중입니다...
+        {isLoading && (
+          <div className="size-full absolute top-0 right-0  flex items-center justify-center ">
+            <LoginLoadingSpinner />
           </div>
-        )} */}
+        )}
       </form>
     </>
   );

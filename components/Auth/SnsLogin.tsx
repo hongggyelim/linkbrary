@@ -1,6 +1,3 @@
-import useAuthStore from "@/store/useAuthStore";
-import useExpandedStore from "@/store/useExpandedStore";
-import useLoginLoading from "@/store/useLoginLoading";
 import { bindClass } from "@/util/bindClass";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,15 +9,6 @@ const SnsLogin = ({
   className?: string;
   onClick: () => void;
 }) => {
-  const { user } = useAuthStore();
-  const { isExpanded } = useExpandedStore();
-  const { setIsLoading, setIsDone } = useLoginLoading();
-
-  const handleClickLogin = () => {
-    if (!user && isExpanded) setIsLoading();
-    if (user) setIsDone();
-  };
-
   return (
     <div
       className={bindClass(

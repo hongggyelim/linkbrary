@@ -40,10 +40,15 @@ const config: Config = {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(100%)" },
         },
+        fadein: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
       },
       animation: {
         slideIn: "slideIn 0.6s ease-in-out forwards",
         slideOut: "slideOut 0.5s ease-in-out forwards",
+        fadein: "fadein 1s ease-out",
       },
     },
   },
