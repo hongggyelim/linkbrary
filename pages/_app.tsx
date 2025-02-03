@@ -1,4 +1,5 @@
 import Header from "@/components/Layout/Header";
+import Sidebar from "@/components/Layout/Sidebar";
 import { Modal } from "@/components/modal/modalManager/ModalManager";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className="min-h-screen">
         <Toaster />
         <Modal />
+        <Sidebar />
         {!hidePaths.includes(router.pathname) && <Header />}
         <Component {...pageProps} />
       </div>

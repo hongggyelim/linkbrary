@@ -42,6 +42,7 @@ const Sidebar = () => {
     handleSubmit(onSubmit)(); // 유효성 검사 후 콜백함수에 data를 전달
   };
 
+  if (!isExpanded) return null;
   return (
     <>
       <div className="bg-black bg-opacity-50 absolute z-30 inset-0 w-screen h-dvh"></div>

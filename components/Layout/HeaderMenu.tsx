@@ -6,7 +6,6 @@ import useAuthStore from "@/store/useAuthStore";
 import { useEffect, useRef, useState } from "react";
 import Dropdown from "../dropdown/Dropdown";
 import useOutsideClick from "@/hooks/useOutsideClick";
-import Sidebar from "./Sidebar";
 import { bindClass } from "@/util/bindClass";
 import { RiLoginCircleLine } from "react-icons/ri";
 import useExpandedStore from "@/store/useExpandedStore";
@@ -52,7 +51,6 @@ const HeaderMenu = () => {
           >
             <RiLoginCircleLine className="size-6" />
           </div>
-          {isExpanded && <Sidebar />}
         </>
       ) : (
         <div className="relative flex items-center gap-[24px]">
