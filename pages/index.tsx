@@ -139,7 +139,7 @@ const LinkPage = ({
           <div className="text-[24px] font-semibold text-orange50">
             <p>
               다음에 보려던&#32;
-              <span className="text-orage100 font-bold">링크&#32;</span>
+              <span className="text-orange100 font-bold">링크&#32;</span>
               어디있지?
             </p>
             <p className="flex justify-center items-center">
@@ -150,6 +150,7 @@ const LinkPage = ({
           <h2 className="text-[32px] leading-[42px] font-extrabold text-center">
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Link</span>
+            <br />
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Here </span>
           </h2>
