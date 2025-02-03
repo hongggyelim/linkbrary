@@ -135,7 +135,7 @@ const LinkPage = ({
         )}
       >
         <div className="my-10 ">
-          <h2 className="text-[32px] leading-[42px] font-extrabold text-center">
+          <h2 className="text-[32px] leading-[42px] font-extrabold">
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Link</span>
             <br />
