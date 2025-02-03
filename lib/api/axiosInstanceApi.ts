@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
 });
 
 export const proxy = axios.create({
-  baseURL: "https://linkbrary-redeploy.vercel.app",
+  baseURL: "https://linkhere.vercel.app",
   // baseURL: "http://localhost:3000",
 });
 
