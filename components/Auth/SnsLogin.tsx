@@ -19,6 +19,7 @@ const SnsLogin = ({
       <span className="border-t border-yellow300 w-full pt-4 text-center">
         간편 로그인
       </span>
+      <p className="font-thin">게스트 계정으로 로그인할 수 있어요</p>
       <div className="flex gap-4 border-b border-yellow300 w-full py-4 justify-center">
         <Link
           href={`https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI_LOG_IN}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
@@ -37,7 +38,7 @@ const SnsLogin = ({
         </Link>
         <button
           type="button"
-          className="rounded-full size-[50px] bg-blue-500 text-white"
+          className="rounded-full size-[50px] bg-blue-500 text-white animate-bounce"
           onClick={onClick}
         >
           Guest

@@ -132,6 +132,21 @@ const LinkPage = ({
     }
   }, [user]); // user가 변경될 때마다 실행
 
+  useEffect(() => {
+    const fetchLinks = async () => {
+      try {
+        const response = await axios.get("/api/links"); // 링크 목록 요청
+        setLinkCardList(response.data || [], response.data.length);
+      } catch (error) {
+        console.error("링크 목록 불러오기 실패", error);
+      }
+    };
+
+    if (user) {
+      fetchLinks(); // 로그인 후 폴더 목록 요청
+    }
+  }, [user]); // user가 변경될 때마다 실행
+
   // 로그인한 상태에서만, 생성된 폴더가 없으면 폴더 생성 모달 띄워주기
   useEffect(() => {
     if (user && folderList.length === 0) {

@@ -102,7 +102,7 @@ const Sidebar = () => {
           </Link>
         </p>
         {isLoading && (
-          <div className="size-full absolute top-0 right-0  flex items-center justify-center ">
+          <div className="size-full absolute top-0 right-0  flex items-center justify-center">
             <LoginLoadingSpinner />
           </div>
         )}

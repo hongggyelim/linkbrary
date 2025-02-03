@@ -26,7 +26,7 @@ const FolderTag = ({ folderList }: FolderListData) => {
           전체
         </button>
       </li>
-      {folderList.slice(0, 8).map((folder) => (
+      {folderList?.slice(0, 8).map((folder) => (
         <li key={folder.id}>
           <button
             className={`${folderStyle} ${folder.id === Number(currentFolderId) && selectedStyle}`}

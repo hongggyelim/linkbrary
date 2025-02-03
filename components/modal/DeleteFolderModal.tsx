@@ -38,7 +38,7 @@ const DeleteFolderModal = ({
   return (
     <ModalContainer
       title="폴더 삭제"
-      // subtitle={folderName}
+      subtitle="선택한 폴더를 삭제하시겠습니까?"
     >
       <SubmitButton
         type="button"
