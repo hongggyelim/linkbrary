@@ -26,8 +26,7 @@ import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
 import { bindClass } from "@/util/bindClass";
-import { PiHandWavingThin } from "react-icons/pi";
-import { PiHandPalmDuotone } from "react-icons/pi";
+import LinkHere from "@/components/home/LinkHere";
 
 interface LinkPageProps {
   linkList: LinkData[];
@@ -136,17 +135,6 @@ const LinkPage = ({
         )}
       >
         <div className="my-10 ">
-          <div className="text-[24px] font-semibold text-orange50">
-            <p>
-              다음에 보려던 &#32;
-              <span className="text-orange100 font-bold">링크&#32;</span>
-              어디있지?
-            </p>
-            <p className="flex justify-center items-center">
-              <span>여기 있어요&#32;</span>
-              <PiHandPalmDuotone />
-            </p>
-          </div>
           <h2 className="text-[32px] leading-[42px] font-extrabold text-center">
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Link</span>
@@ -156,6 +144,7 @@ const LinkPage = ({
           </h2>
         </div>
         <AddLinkInput folderList={folderList} />
+        {!user && <LinkHere />}
       </div>
 
       {/* 로그인하면 보여줄 부분 */}
