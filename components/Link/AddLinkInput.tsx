@@ -46,7 +46,6 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
     if (user && (!folderList || folderList.length < 1)) {
       openModal("AddFolderModal");
     }
-    console.log(folderList);
   };
 
   return (
