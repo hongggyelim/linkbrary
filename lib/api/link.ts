@@ -42,7 +42,7 @@ export const postLink = async (body: postLinkProps) => {
       throw new Error("Request failed");
     }
   } catch (err) {
-    // console.error("에러 메시지: ", err instanceof Error ? err.message : err);
+    console.error("에러 메시지: ", err instanceof Error ? err.message : err);
     throw err;
   }
 };
