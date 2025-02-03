@@ -42,8 +42,8 @@ const config: Config = {
         },
       },
       animation: {
-        slideIn: "slideIn 0.3s ease-in-out forwards",
-        slideOut: "slideOut 0.3s ease-in-out forwards",
+        slideIn: "slideIn 0.6s ease-in-out forwards",
+        slideOut: "slideOut 0.5s ease-in-out forwards",
       },
     },
   },

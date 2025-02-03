@@ -59,7 +59,7 @@ const Sidebar = () => {
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={bindClass(
-          "p-6 pt-12 flex flex-col gap-3 items-center bg-white shadow-lg absolute h-dvh top-0 right-0 z-40 transition-transform",
+          "p-6 pt-12 flex flex-col gap-3 items-center bg-white shadow-lg h-dvh fixed top-0 right-0 z-40 delay-300",
           isExpanded ? "animate-slideIn" : "animate-slideOut"
         )}
         aria-labelledby="login-form"

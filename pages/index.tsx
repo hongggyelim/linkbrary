@@ -199,8 +199,12 @@ const LinkPage = ({
                 ) : linkCardList.length !== 0 ? (
                   <>
                     <CardsLayout>
-                      {linkCardList.map((link) => (
-                        <LinkCard key={link.id} info={link} />
+                      {linkCardList.map((link, index) => (
+                        <LinkCard
+                          key={link.id}
+                          info={link}
+                          id={index === 2 ? "target" : ""}
+                        />
                       ))}
                     </CardsLayout>
                     <Pagination totalCount={totalCount as number} />

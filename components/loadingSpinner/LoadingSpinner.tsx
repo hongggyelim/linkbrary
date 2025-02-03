@@ -10,7 +10,7 @@ const LoadingSpinner = ({
   return (
     <div className="flex flex-col items-center justify-center">
       <p className="md:text-2xl mb-4 sm:text-lg">{text}</p>
-      <ClipLoader color="#6d6afe" size={size} />
+      <ClipLoader color="#fdb13f" size={size} />
     </div>
   );
 };
