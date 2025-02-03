@@ -22,7 +22,10 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
   };
 
   const handleClick = () => {
-    if (link === "") {
+    if (!user) {
+      toast.error("로그인이 필요합니다.");
+      toggleExpanded();
+    } else if (link === "") {
       toast.error(toastMessages.error.inputLink);
     } else if (!urlRegex.test(link.trim())) {
       toast.error(toastMessages.error.invalidLink);
