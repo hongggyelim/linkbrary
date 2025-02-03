@@ -22,10 +22,12 @@ import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useFolderName from "@/hooks/useFolderName";
 import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
 import { bindClass } from "@/util/bindClass";
+import { PiHandWavingThin } from "react-icons/pi";
+import { PiHandPalmDuotone } from "react-icons/pi";
 
 interface LinkPageProps {
   linkList: LinkData[];
@@ -127,18 +129,28 @@ const LinkPage = ({
       {/* 로그인 여부와 상관없이 보여주는 부분 */}
       <div
         className={bindClass(
-          "bg-gray100 w-full flex flex-col pb-10 items-center relative",
+          "bg-yellow100 w-full flex flex-col pb-10 items-center relative",
           user
             ? "justify-center"
             : "h-[calc(100dvh-64px)] md:h-[calc(100dvh-80px)] lg:h-[calc(100dvh-80px)] justify-start"
         )}
       >
-        <h2 className="mt-20 mb-10 text-[32px] leading-[42px] font-bold text-center bg-transparent">
-          <span className="gradient-text">세상의 모든 정보</span>
-          를<br /> 쉽게 저장하고
-          <br className="lg:hidden" />
-          <span className="hidden lg:inline">&nbsp;</span>관리해 보세요
-        </h2>
+        <div className="my-10 ">
+          <div className="text-[24px] font-semibold text-orange50">
+            <p>다음에 보려던 링크 어디있지?</p>
+            <p className="flex justify-center items-center">
+              <span>여기 있어요&#32;</span>
+              <PiHandPalmDuotone />
+            </p>
+          </div>
+          <h2 className="text-[32px] leading-[42px] font-extrabold text-center">
+            <span>I&#39;m&#32;</span>
+            <span className="gradient-text">Link</span>
+            <br className="lg:hidden" />
+            <span>I&#39;m&#32;</span>
+            <span className="gradient-text">Here </span>
+          </h2>
+        </div>
         <AddLinkInput folderList={folderList} />
       </div>
 

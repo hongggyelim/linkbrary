@@ -81,14 +81,14 @@ const FavoritePage = ({
 
   return (
     <>
-      <div className="flex justify-center items-center sm:h-[117px] h-[219px] sm:mb-5 mb-10 bg-gray100 text-center">
+      <div className="flex justify-center items-center sm:h-[117px] h-[219px] sm:mb-5 mb-10 bg-yellow100 text-center">
         <h2 className="text-[32px] md:text-[40px] font-semibold">
           ⭐️ 즐겨찾기
         </h2>
       </div>
       <Container>
         <div className="flex justify-end">
-          <button onClick={returnButton} className="mb-5 text-purple100">
+          <button onClick={returnButton} className="mb-5 text-orange100">
             ◀ 마이링크로 돌아가기
           </button>
         </div>

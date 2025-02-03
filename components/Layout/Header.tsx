@@ -13,11 +13,14 @@ const Header = () => {
   }, [fetchUserInfo]);
 
   return (
-    <header className="bg-gray100 py-[13px] px-[30px] flex justify-center h-16 md:h-20 lg:h-20 relative">
+    <header className="bg-yellow100 py-[13px] px-[30px] flex justify-center h-16 md:h-20 lg:h-20 relative">
       <div className="flex justify-between items-center w-full lg:max-w-[1060px] md:max-w-[704px] sm:max-w-[325px]">
-        <h1 className="w-[88.67px] h-[16px] md:w-[133px] md:h-[24px] lg:w-[133px] lg:h-[24px]">
-          <Link href={"/"}>
-            <Image src={Logo} width={133} height={24} alt="로고" />
+        <h1 className="">
+          <Link
+            href={"/"}
+            className="text-orange100 font-extrabold text-lg md:text-2xl lg:text-2xl"
+          >
+            LinkHere
           </Link>
         </h1>
         <HeaderMenu />

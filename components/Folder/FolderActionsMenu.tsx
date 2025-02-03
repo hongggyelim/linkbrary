@@ -40,7 +40,7 @@ const FolderActionsMenu = ({
   useRerenderFolderList(isOpen, setFolderList);
 
   return (
-    <div className="w-[192px] h-[18px] flex justify-between gap-[12px] text-gray400">
+    <div className="w-[192px] h-[18px] flex justify-between gap-[12px] text-yellow400">
       {[
         { src: "/icons/share.svg", alt: "공유", text: "공유" },
         { src: "/icons/pen.svg", alt: "이름 변경", text: "이름 변경" },

@@ -13,7 +13,7 @@ interface DropdownProps {
 
 const Dropdown = ({ items }: DropdownProps) => {
   const buttonStyle =
-    "block w-full py-2 text-sm hover:bg-gray200 hover:text-purple100";
+    "block w-full py-2 text-sm hover:bg-yellow200 hover:text-orange100";
 
   return (
     <div className="absolute top-[17px] right-0 flex flex-col gap-[2px] min-w-[100px] bg-white shadow-lg rounded">

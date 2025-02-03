@@ -29,7 +29,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
     >
       <div
         ref={modalRef}
-        className="z-20 relative w-[300px] md:w-[360px] lg:w-[360px] py-8 px-10 flex flex-col gap-6 bg-white rounded-[15px] border border-gray300"
+        className="z-20 relative w-[300px] md:w-[360px] lg:w-[360px] py-8 px-10 flex flex-col gap-6 bg-white rounded-[15px] border border-yellow300"
       >
         {/* 제목 + 부제목 */}
         <div className="flex flex-col items-center justify-center gap-2">
@@ -39,7 +39,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
             </div>
           )}
           {subtitle && (
-            <div className="text-sm leading-[22px] font-normal text-gray400 overflow-hidden">
+            <div className="text-sm leading-[22px] font-normal text-yellow400 overflow-hidden">
               {subtitle.slice(0, 30) + "..."}
             </div>
           )}
@@ -53,9 +53,9 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
         <button
           type="button"
           onClick={() => closeModal()}
-          className="bg-gray200 absolute top-4 right-4 rounded-full size-6 flex justify-center items-center"
+          className="bg-yellow200 absolute top-4 right-4 rounded-full size-6 flex justify-center items-center"
         >
-          <IoIosClose className="text-gray400" strokeWidth={2} />
+          <IoIosClose className="text-yellow400" strokeWidth={2} />
         </button>
       </div>
     </div>

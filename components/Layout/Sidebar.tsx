@@ -40,6 +40,8 @@ const Sidebar = () => {
     setValue("email", process.env.NEXT_PUBLIC_TEST_ID as string);
     setValue("password", process.env.NEXT_PUBLIC_TEST_PW as string);
     handleSubmit(onSubmit)(); // 유효성 검사 후 콜백함수에 data를 전달
+    console.log(process.env.NEXT_PUBLIC_TEST_ID);
+    console.log(process.env.NEXT_PUBLIC_TEST_PW);
   };
 
   return (
@@ -86,7 +88,7 @@ const Sidebar = () => {
           아직 회원이 아니신가요?{" "}
           <Link
             href="/signup"
-            className="cursor-pointer text-purple100 underline font-semibold"
+            className="cursor-pointer text-orange100 underline font-semibold"
           >
             회원가입하기
           </Link>

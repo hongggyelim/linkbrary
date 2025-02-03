@@ -8,6 +8,7 @@ import { urlRegex } from "@/util/regex";
 import SubmitButton from "../button/SubmitButton";
 import useExpandedStore from "@/store/useExpandedStore";
 import useAuthStore from "@/store/useAuthStore";
+import { IoIosLink } from "react-icons/io";
 
 const AddLinkInput = ({ folderList }: FolderListData) => {
   const { openModal } = useModalStore();
@@ -49,9 +50,10 @@ const AddLinkInput = ({ folderList }: FolderListData) => {
   };
 
   return (
-    <div className="flex bg-white justify-between items-center w-full lg:max-w-[800px] md:max-w-[704px] sm:max-w-[325px] h-[69px] lg:px-5 md:px-5 sm:px-[10px] border border-blue-500 rounded-[10px] md:w-[704px] sm:w-[325px] sm:h-[53px] transition-all">
-      <div className="flex">
-        <Image src="/icons/link.svg" width={20} height={20} alt="link icon" />
+    <div className="flex bg-white justify-between items-center w-full lg:max-w-[800px] md:max-w-[704px] sm:max-w-[325px] h-[69px] lg:px-5 md:px-5 sm:px-[10px] border border-orange100 rounded-[10px] md:w-[704px] sm:w-[325px] sm:h-[53px] transition-all">
+      <div className="flex items-center">
+        <IoIosLink className="size-5 text-orange100" />
+
         <input
           onChange={handleChange}
           onKeyDown={handleKeyDown}

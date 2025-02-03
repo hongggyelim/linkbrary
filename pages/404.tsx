@@ -6,7 +6,7 @@ const notFoundPage = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const router = useRouter();
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray100">
+    <div className="flex flex-col items-center justify-center h-screen bg-yellow100">
       <span className="text-[40px] font-bold">404</span>
       <h3 className="text-[30px] mb-2">페이지를 찾을 수 없습니다.</h3>
       <p className="text-[16px] mb-3">

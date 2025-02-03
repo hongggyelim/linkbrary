@@ -44,7 +44,7 @@ em {
 /* 랜딩페이지 그라데이션 텍스트 */
 @layer utilities {
   .gradient-text {
-    background: linear-gradient(90.99deg, #6d6afe 0.12%, #6ae3fe 101.84%);
+    background: linear-gradient(90.99deg, #ffb938 0.12%, #49e09a 101.84%);
     background-clip: text;
     color: transparent;
   }
@@ -75,10 +75,10 @@ input {
   background: transparent;
 }
 .scrollbar-custom::-webkit-scrollbar-thumb {
-  background: #6d6afe;
+  background: #faea7f;
   border-radius: 9999px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: #6d6afe;
+  background: #faea7f;
 }

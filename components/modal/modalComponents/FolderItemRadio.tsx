@@ -13,7 +13,7 @@ const FolderItemRadio = ({
 }) => {
   const { name, linkCount, id } = item;
   let isSelected = id === selectedId;
-  const bgColor = isSelected ? "bg-gray100" : "bg-white";
+  const bgColor = isSelected ? "bg-yellow100" : "bg-white";
 
   const onClickFolderItem = () => {
     onClick(id);
@@ -34,11 +34,11 @@ const FolderItemRadio = ({
           className="opacity-0"
           id={String(id)}
         />
-        <div className="text-gray400 text-sm">{linkCount}개 링크</div>
+        <div className="text-yellow400 text-sm">{linkCount}개 링크</div>
       </div>
       {isSelected && (
         <div>
-          <FaCheck className="text-purple100" />
+          <FaCheck className="text-orange100" />
         </div>
       )}
     </li>

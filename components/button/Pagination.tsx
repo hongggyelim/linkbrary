@@ -8,7 +8,7 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ totalCount }) => {
-  const LiStyle = "relative w-12 h-12 rounded-lg bg-gray900";
+  const LiStyle = "relative w-12 h-12 rounded-lg bg-gray-100";
   const buttonStyle =
     "flex justify-center items-center w-full h-full text-black400";
 

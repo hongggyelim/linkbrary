@@ -16,10 +16,10 @@ const SnsLogin = ({
         className
       )}
     >
-      <span className="border-t border-gray300 w-full pt-4 text-center">
+      <span className="border-t border-yellow300 w-full pt-4 text-center">
         간편 로그인
       </span>
-      <div className="flex gap-4 border-b border-gray300 w-full py-4 justify-center">
+      <div className="flex gap-4 border-b border-yellow300 w-full py-4 justify-center">
         <Link
           href={`https://accounts.google.com/o/oauth2/v2/auth?scope=https://www.googleapis.com/auth/userinfo.profile&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI_LOG_IN}&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
         >

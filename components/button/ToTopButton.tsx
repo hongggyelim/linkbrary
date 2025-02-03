@@ -10,9 +10,9 @@ const ToTopButton = () => {
       <button
         type="button"
         onClick={handleClickToTop}
-        className="fixed bottom-10 right-10 rounded-full border bg-white opacity-70 border-purple100 size-[40px] flex items-center justify-center"
+        className="fixed bottom-10 right-10 rounded-full border bg-white opacity-70 border-orange100 size-[40px] flex items-center justify-center"
       >
-        <FaAngleUp fill="purple100" />
+        <FaAngleUp fill="orange100" />
       </button>
     </>
   );

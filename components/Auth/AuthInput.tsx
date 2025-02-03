@@ -33,8 +33,8 @@ const AuthInput = forwardRef<HTMLInputElement, AuthInputProps>(
               value={value}
               onChange={onChange}
               type={isPasswordVisible && type === "password" ? "text" : type}
-              className={`w-full h-[60px] rounded-lg border px-[15px] py-[18px] pr-[40px] outline-purple100 ${
-                error ? "border-red-500" : "border-gray300"
+              className={`w-full h-[60px] rounded-lg border px-[15px] py-[18px] pr-[40px] outline-orange100 ${
+                error ? "border-red-500" : "border-yellow300"
               }`}
             />
             {type === "password" && (

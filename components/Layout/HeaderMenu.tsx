@@ -10,6 +10,7 @@ import Sidebar from "./Sidebar";
 import { bindClass } from "@/util/bindClass";
 import { RiLoginCircleLine } from "react-icons/ri";
 import useExpandedStore from "@/store/useExpandedStore";
+import { FaCircleUser } from "react-icons/fa6";
 
 const HeaderMenu = () => {
   const { user, logout, fetchUserInfo } = useAuthStore();
@@ -57,7 +58,7 @@ const HeaderMenu = () => {
         <div className="relative flex items-center gap-[24px]">
           <Link
             href={"/favorite"}
-            className="flex items-center gap-[6px] bg-gray200 border border-purple100 rounded-[4px] py-[10px] px-[12px] text-[12px] leading-[14.32px] md:text-[14px] md:leading-[16.71px] lg:text-[14px] lg:leading-[16.71px] font-normal"
+            className="flex items-center gap-[6px] bg-yellow200 border border-orange100 rounded-[4px] py-[10px] px-[12px] text-[12px] leading-[14.32px] md:text-[14px] md:leading-[16.71px] lg:text-[14px] lg:leading-[16.71px] font-normal"
           >
             <Image
               src={Star}
@@ -73,13 +74,18 @@ const HeaderMenu = () => {
             onClick={() => setIsOpen(!isOpen)}
             ref={dropdownRef}
           >
-            <Image
-              src={user.imageSource || Profile}
-              width={28}
-              height={28}
-              alt="프로필"
-              className="rounded-full"
-            />
+            {user.imageSource ? (
+              <FaCircleUser className="size-7 text-orange100" />
+            ) : (
+              <Image
+                src={Profile}
+                width={28}
+                height={28}
+                alt="프로필"
+                className="rounded-full"
+              />
+            )}
+
             <span className="hidden md:block lg:block">{user?.name}</span>
           </div>
           <div className="absolute top-8 right-0 z-50">
