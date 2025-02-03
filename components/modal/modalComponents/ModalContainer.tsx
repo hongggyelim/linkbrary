@@ -55,7 +55,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
           onClick={() => closeModal()}
           className="bg-yellow200 absolute top-4 right-4 rounded-full size-6 flex justify-center items-center"
         >
-          <IoIosClose className="text-yellow400" strokeWidth={2} />
+          <IoIosClose className="text-orange100" strokeWidth={2} />
         </button>
       </div>
     </div>

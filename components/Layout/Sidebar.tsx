@@ -40,8 +40,6 @@ const Sidebar = () => {
     setValue("email", process.env.NEXT_PUBLIC_TEST_ID as string);
     setValue("password", process.env.NEXT_PUBLIC_TEST_PW as string);
     handleSubmit(onSubmit)(); // 유효성 검사 후 콜백함수에 data를 전달
-    console.log(process.env.NEXT_PUBLIC_TEST_ID);
-    console.log(process.env.NEXT_PUBLIC_TEST_PW);
   };
 
   return (

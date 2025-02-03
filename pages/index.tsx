@@ -137,7 +137,11 @@ const LinkPage = ({
       >
         <div className="my-10 ">
           <div className="text-[24px] font-semibold text-orange50">
-            <p>다음에 보려던 링크 어디있지?</p>
+            <p>
+              다음에 보려던&#32;
+              <span className="text-orage100 font-bold">링크&#32;</span>
+              어디있지?
+            </p>
             <p className="flex justify-center items-center">
               <span>여기 있어요&#32;</span>
               <PiHandPalmDuotone />
@@ -146,7 +150,6 @@ const LinkPage = ({
           <h2 className="text-[32px] leading-[42px] font-extrabold text-center">
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Link</span>
-            <br className="lg:hidden" />
             <span>I&#39;m&#32;</span>
             <span className="gradient-text">Here </span>
           </h2>
@@ -177,7 +180,7 @@ const LinkPage = ({
                   </>
                 )}
               </div>
-              <div className="h-[440px]">
+              <div className="py-10">
                 {isLoading ? (
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {[...Array(cardCount)].map((_, index) => (

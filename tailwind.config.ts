@@ -23,7 +23,6 @@ const config: Config = {
         yellow300: "#faea7f",
         yellow400: "#fae44e",
         yellow500: "#ffe42f",
-        gray900: "#ffde00",
         orange50: "#fdb13f",
         orange100: "#ff914d",
       },

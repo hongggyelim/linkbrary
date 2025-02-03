@@ -92,7 +92,7 @@ const FavoritePage = ({
             ◀ 마이링크로 돌아가기
           </button>
         </div>
-        <div className="h-[440px]">
+        <div className="py-10">
           {/* 로딩 중일 때 */}
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

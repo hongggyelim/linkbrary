@@ -30,8 +30,8 @@ const HeaderMenu = () => {
 
   const dropdownItems = [
     {
-      label: "마이링크",
-      href: "/link",
+      label: "즐겨찾기",
+      href: "/favorite",
     },
     {
       label: "로그아웃",
