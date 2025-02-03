@@ -6,7 +6,7 @@ const FolderTag = ({ folderList }: FolderListData) => {
   const { folder: currentFolderId } = router.query;
 
   const folderStyle =
-    "w-[100px] h-[35px] px-[15px] text-sm whitespace-nowrap truncate border border-purple100 rounded-md hover:bg-purple100 hover:text-white";
+    "w-[100px] h-[35px] px-[15px] text-sm whitespace-nowrap truncate border border-orange100 rounded-md hover:bg-orange100 hover:text-white";
   const selectedStyle = "bg-orange100 text-white";
   const handleSubmit = (selectedFolderId: number | string) => {
     router.push({
