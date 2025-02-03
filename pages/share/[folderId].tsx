@@ -52,7 +52,13 @@ const SharePage = ({ folderName, linkList, totalCount }: SharePageprops) => {
           <>
             <CardsLayout>
               {linkList.length > 0
-                ? linkList.map((link) => <LinkCard key={link.id} info={link} />)
+                ? linkList.map((link, index) => (
+                    <LinkCard
+                      key={link.id}
+                      info={link}
+                      id={index === 2 ? "target" : ""}
+                    />
+                  ))
                 : null}
             </CardsLayout>
             <Pagination totalCount={totalCount} />

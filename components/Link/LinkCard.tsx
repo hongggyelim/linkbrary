@@ -18,7 +18,7 @@ interface LinkCardProps {
     url: string;
     createdAt: string;
   };
-  id: string;
+  id?: string;
 }
 
 const LinkCard = ({ info, id }: LinkCardProps) => {
