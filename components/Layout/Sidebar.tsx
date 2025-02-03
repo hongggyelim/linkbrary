@@ -8,6 +8,7 @@ import SubmitButton from "../button/SubmitButton";
 import SnsLogin from "../Auth/SnsLogin";
 import Link from "next/link";
 import useExpandedStore from "@/store/useExpandedStore";
+import { useEffect } from "react";
 
 interface LoginType {
   email: string;
@@ -21,8 +22,8 @@ const Sidebar = () => {
     setValue,
     handleSubmit,
   } = useForm<LoginType>();
-  const { isExpanded } = useExpandedStore();
-
+  const { isExpanded, toggleExpanded, setClosed } = useExpandedStore();
+  const { user } = useAuthStore();
   const onSubmit = async (data: LoginType) => {
     try {
       const response = await login(data);
@@ -35,6 +36,9 @@ const Sidebar = () => {
       toast.error(error as string);
     }
   };
+  useEffect(() => {
+    if (user) setClosed;
+  }, [user]);
 
   const handleLoginGuest = () => {
     setValue("email", process.env.NEXT_PUBLIC_TEST_ID as string);
@@ -45,7 +49,10 @@ const Sidebar = () => {
   if (!isExpanded) return null;
   return (
     <>
-      <div className="bg-black bg-opacity-50 absolute z-30 inset-0 w-screen h-dvh"></div>
+      <div
+        onClick={toggleExpanded}
+        className="bg-black bg-opacity-50 absolute z-30 inset-0 w-screen h-dvh"
+      ></div>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className={bindClass(
