@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const SnsSignin = () => {
   return (
-    <div className="flex items-center justify-between bg-yellow300 rounded-lg px-6 py-3 mt-8">
+    <div className="flex items-center justify-between bg-yellow200 rounded-lg px-6 py-3 mt-8">
       <span>소셜 회원가입</span>
       <div className="flex gap-4">
         <Link
