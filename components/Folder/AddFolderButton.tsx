@@ -1,24 +1,14 @@
-import { FolderData } from "@/types/folderTypes";
+import useViewport from "@/hooks/useViewport";
 import useModalStore from "@/store/useModalStore";
-import useRerenderFolderList from "@/hooks/useRerenderFolderList";
 
-interface AddFolderButtonProps {
-  setFolderList: React.Dispatch<React.SetStateAction<FolderData[]>>;
-  isModal?: boolean;
-}
-
-export const AddFolderButton = ({
-  setFolderList,
-  isModal = false,
-}: AddFolderButtonProps) => {
-  const { isOpen, openModal } = useModalStore();
-
-  useRerenderFolderList(isOpen, setFolderList);
+export const AddFolderButton = () => {
+  const { openModal } = useModalStore();
+  const { isMobile } = useViewport();
 
   return (
     <button
       className={
-        !isModal
+        !isMobile
           ? "md:mt-auto xl:mt-0 text-orange100"
           : "fixed-bottom w-[120px] h-[35px] rounded-[20px] bg-orange100 text-white hover:bg-orange50 z-50"
       }

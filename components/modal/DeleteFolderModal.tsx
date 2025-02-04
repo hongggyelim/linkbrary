@@ -5,6 +5,7 @@ import ModalContainer from "./modalComponents/ModalContainer";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { useRouter } from "next/router";
+import { QueryClient } from "@tanstack/react-query";
 
 const DeleteFolderModal = ({
   // folderName,
@@ -26,6 +27,10 @@ const DeleteFolderModal = ({
       try {
         await deleteFolder(folderId);
         toast.success(toastMessages.success.deleteFolder);
+        const queryClient = new QueryClient();
+        await queryClient.invalidateQueries({
+          queryKey: ["folders"],
+        });
         router.push("/");
       } catch (error) {
         toast.error(toastMessages.error.deleteFolder);

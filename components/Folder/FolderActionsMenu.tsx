@@ -2,18 +2,14 @@ import { FolderData } from "@/types/folderTypes";
 import Image from "next/image";
 import useModalStore from "@/store/useModalStore";
 import useRerenderFolderList from "../../hooks/useRerenderFolderList";
+import { QueryClient } from "@tanstack/react-query";
 
 interface FolderActionsMenuProps {
-  setFolderList: React.Dispatch<React.SetStateAction<FolderData[]>>;
   folderId: string | string[] | undefined;
   linkCount: number;
 }
 
-const FolderActionsMenu = ({
-  setFolderList,
-  folderId,
-  linkCount,
-}: FolderActionsMenuProps) => {
+const FolderActionsMenu = ({ folderId, linkCount }: FolderActionsMenuProps) => {
   const { isOpen, openModal } = useModalStore();
 
   const handleModalOpen = (text: string) => {
@@ -37,7 +33,10 @@ const FolderActionsMenu = ({
     }
   };
 
-  useRerenderFolderList(isOpen, setFolderList);
+  const queryClient = new QueryClient();
+  queryClient.invalidateQueries({
+    queryKey: ["folders"],
+  });
 
   return (
     <div className="w-[192px] h-[18px] flex justify-between gap-[12px] text-orange100">

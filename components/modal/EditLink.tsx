@@ -7,7 +7,7 @@ import SubmitButton from "../button/SubmitButton";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { urlRegex } from "@/util/regex";
-import { error } from "console";
+import { QueryClient } from "@tanstack/react-query";
 
 const EditLink = ({
   folderName,
@@ -39,6 +39,10 @@ const EditLink = ({
       try {
         await updateLink(linkId, body);
         closeModal();
+        const queryClient = new QueryClient();
+        await queryClient.invalidateQueries({
+          queryKey: ["links"],
+        });
         toast.success(toastMessages.success.editLink);
       } catch (err) {
         toast.error(toastMessages.error.editLink);

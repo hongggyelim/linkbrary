@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 interface PaginationProps {
   totalCount: number;
 }
-
 const Pagination: React.FC<PaginationProps> = ({ totalCount }) => {
   const LiStyle = "relative w-12 h-12 rounded-lg bg-gray-100";
   const buttonStyle =

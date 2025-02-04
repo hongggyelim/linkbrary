@@ -16,16 +16,16 @@ interface putLinkFavoriteProps {
 // 폴더에 속한 링크 조회
 export const getLink = async (
   query: any,
-  forderId: string | string[] | undefined
+  folderId: string | string[] | undefined
 ) => {
   try {
-    const res = await axiosInstance.get(`/folders/${forderId}/links`, {
+    const res = await axiosInstance.get(`/folders/${folderId}/links`, {
       params: {
         page: query.page || 1,
         pageSize: query.pageSize || 10,
       },
     });
-
+    console.log("폴더 아이디", folderId);
     if (res.status >= 200 && res.status < 300) return res.data;
   } catch (err) {
     console.error("에러 메시지: ", err instanceof Error ? err.message : err);
@@ -48,9 +48,14 @@ export const postLink = async (body: postLinkProps) => {
 };
 
 // 유저의 전체 링크 조회(auth)
-export const getLinks = async () => {
+export const getLinks = async (query?: any) => {
   try {
-    const res = await proxy.get("/api/links");
+    const res = await proxy.get("/api/links", {
+      params: {
+        page: query.page || 1,
+        pageSize: query.pageSize || 10,
+      },
+    });
     if (res.status >= 200 && res.status < 300) return res.data;
   } catch (err) {
     console.error("에러 메시지: ", err instanceof Error ? err.message : err);

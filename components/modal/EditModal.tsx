@@ -6,6 +6,7 @@ import { putFolder } from "@/lib/api/folder";
 import SubmitButton from "../button/SubmitButton";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
+import { QueryClient } from "@tanstack/react-query";
 
 const EditModal = ({
   // folderName,
@@ -39,6 +40,11 @@ const EditModal = ({
       try {
         await putFolder(folderId, body);
         toast.success(toastMessages.success.editFolder);
+
+        const queryClient = new QueryClient();
+        await queryClient.invalidateQueries({
+          queryKey: ["folders"],
+        });
         closeModal();
       } catch (error) {
         toast.error(toastMessages.error.editFolder);

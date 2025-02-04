@@ -7,19 +7,25 @@ interface UpdateLinkBody {
 }
 
 interface LinkCardStore {
-  linkCardList: LinkData[];
-  setLinkCardList: (list: LinkData[], totalCount: number) => void;
+  linkCardList: LinkData[] | undefined;
+  setLinkCardList: (
+    list: LinkData[] | undefined,
+    totalCount: number | undefined
+  ) => void;
   updateLink: (linkId: number, body: UpdateLinkBody) => Promise<void>;
   deleteLink: (linkId: number) => Promise<void>;
   updateFavorite: (linkId: number, favorite: boolean) => Promise<void>;
-  totalCount: number | null;
+  totalCount: number | undefined;
 }
 
 export const useLinkCardStore = create<LinkCardStore>((set) => ({
   linkCardList: [],
-  totalCount: null,
+  totalCount: undefined,
 
-  setLinkCardList: (list: LinkData[], totalCount: number) => {
+  setLinkCardList: (
+    list: LinkData[] | undefined,
+    totalCount: number | undefined
+  ) => {
     set({ linkCardList: list, totalCount: totalCount });
   },
 
@@ -32,7 +38,7 @@ export const useLinkCardStore = create<LinkCardStore>((set) => ({
       // 수정된 데이터를 사용하여 상태 업데이트
       if (updatedData) {
         set((state) => {
-          const updatedList = state.linkCardList.map((link) =>
+          const updatedList = state.linkCardList?.map((link) =>
             link.id === linkId ? { ...link, ...updatedData } : link
           );
           return { linkCardList: updatedList };
@@ -50,7 +56,7 @@ export const useLinkCardStore = create<LinkCardStore>((set) => ({
 
       // 삭제된 항목을 제외한 나머지 항목으로 상태 업데이트
       set((state) => {
-        const updatedList = state.linkCardList.filter(
+        const updatedList = state.linkCardList?.filter(
           (link) => link.id !== linkId
         );
         return { linkCardList: updatedList };
@@ -67,7 +73,7 @@ export const useLinkCardStore = create<LinkCardStore>((set) => ({
 
       // 변경된 항목만 상태 업데이트
       set((state) => {
-        const updatedList = state.linkCardList.map((link) =>
+        const updatedList = state.linkCardList?.map((link) =>
           link.id === linkId ? { ...link, favorite } : link
         );
         return { linkCardList: updatedList };

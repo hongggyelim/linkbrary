@@ -4,6 +4,7 @@ import ModalContainer from "./modalComponents/ModalContainer";
 import { useLinkCardStore } from "@/store/useLinkCardStore";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
+import { QueryClient } from "@tanstack/react-query";
 
 const DeleteLinkModal = ({
   link,
@@ -18,8 +19,12 @@ const DeleteLinkModal = ({
   const handleDelete = async () => {
     try {
       await deleteLink(linkId);
-      closeModal();
       toast.success(toastMessages.success.deleteLink);
+      const queryClient = new QueryClient();
+      await queryClient.invalidateQueries({
+        queryKey: ["folders"],
+      });
+      closeModal();
     } catch (error) {
       toast.error(toastMessages.error.deleteLink);
     }

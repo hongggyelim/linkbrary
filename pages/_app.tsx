@@ -2,15 +2,28 @@ import Header from "@/components/Layout/Header";
 import Sidebar from "@/components/Layout/Sidebar";
 import { Modal } from "@/components/modal/modalManager/ModalManager";
 import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { Toaster } from "react-hot-toast";
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60 * 1000,
+      gcTime: 60 * 60 * 1000,
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+    mutations: {
+      retry: 1,
+    },
+  },
+});
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const hidePaths = ["/login", "/signup", "/404"];
-
   return (
     <>
       <Head>
@@ -45,13 +58,15 @@ export default function App({ Component, pageProps }: AppProps) {
         src="https://developers.kakao.com/sdk/js/kakao.min.js"
       ></script>
 
-      <div className="min-h-screen">
-        <Toaster />
-        <Modal />
-        <Sidebar />
-        {!hidePaths.includes(router.pathname) && <Header />}
-        <Component {...pageProps} />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="min-h-screen">
+          <Toaster />
+          <Modal />
+          <Sidebar />
+          {!hidePaths.includes(router.pathname) && <Header />}
+          <Component {...pageProps} />
+        </div>
+      </QueryClientProvider>
     </>
   );
 }

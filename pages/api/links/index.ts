@@ -15,6 +15,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           params: { page, pageSize, search }, // 만약 아무런 값이 없으면 알아서 예외시킴
           headers: { Authorization: `Bearer ${accessToken}` },
         });
+        console.log("전체 링크 조회", res);
         return res.status(201).json(response.data);
       } catch (err) {
         console.error(err);
