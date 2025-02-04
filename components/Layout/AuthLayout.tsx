@@ -1,23 +1,13 @@
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { ReactNode } from "react";
 
 const AuthLayout = ({ children }: { children: ReactNode }) => {
-  const router = useRouter();
   return (
     <div className="flex flex-col items-center justify-center h-sc">
-      <div>
-        <Image
-          className="cursor-pointer"
-          src="/icons/logo.svg"
-          width="211"
-          height="38"
-          alt="로고"
-          onClick={() => {
-            router.push("/");
-          }}
-        />
-      </div>
+      <Link href={"/"}>
+        <Image src="/images/logo.png" alt="LinkHere" width={150} height={50} />
+      </Link>
       {children}
     </div>
   );
