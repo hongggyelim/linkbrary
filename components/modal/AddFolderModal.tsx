@@ -47,6 +47,7 @@ const AddFolderModal = ({ folderName }: { folderName: string }) => {
         name={folderName}
         value={value}
         onChange={handleChange}
+        onEnter={handleSubmit}
       />
       <SubmitButton
         type="button"

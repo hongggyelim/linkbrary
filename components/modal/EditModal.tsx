@@ -59,6 +59,7 @@ const EditFolderModal = ({
         name="folderName"
         value={value}
         onChange={handleChange}
+        onEnter={handleSubmit}
       />
       <SubmitButton
         type="button"
