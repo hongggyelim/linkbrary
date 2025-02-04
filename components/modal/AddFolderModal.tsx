@@ -10,7 +10,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const AddFolderModal = ({ folderName }: { folderName: string }) => {
   const [value, setValue] = useState("");
-
+  const [disabled, setDisabled] = useState(false);
   const { closeModal } = useModalStore();
   const queryClient = useQueryClient();
 
@@ -26,19 +26,24 @@ const AddFolderModal = ({ folderName }: { folderName: string }) => {
     const body = {
       name: value,
     };
-    if (value !== "") {
+    if (value === "") {
+      toast.error("폴더 이름을 입력해주세요");
+    } else {
       try {
+        setDisabled(true);
         await postFolders(body);
         toast.success(toastMessages.success.addFolder);
 
         await queryClient.invalidateQueries({
           queryKey: ["folder"],
         });
+        closeModal();
       } catch (error) {
         toast.error(toastMessages.error.addFolder);
+      } finally {
+        setDisabled(false);
       }
     }
-    closeModal();
   };
   return (
     <ModalContainer title="폴더 추가">
@@ -55,6 +60,7 @@ const AddFolderModal = ({ folderName }: { folderName: string }) => {
         width="w-full"
         height="h-[51px]"
         color="positive"
+        disabled={disabled}
       >
         추가하기
       </SubmitButton>

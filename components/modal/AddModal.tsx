@@ -8,6 +8,7 @@ import useModalStore from "@/store/useModalStore";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { useRouter } from "next/router";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
   const [selectedId, setSelectedId] = useState<number | null>(
@@ -15,7 +16,7 @@ const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
   );
   const { closeModal } = useModalStore();
   const router = useRouter();
-
+  const queryClient = useQueryClient();
   const handleSubmit = async () => {
     const body = {
       folderId: Number(selectedId),
@@ -27,6 +28,9 @@ const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
       try {
         await postLink(body);
         toast.success(toastMessages.success.addLink);
+        await queryClient.invalidateQueries({
+          queryKey: ["folder"],
+        });
         router.push(`/?folder=${selectedId}`);
       } catch (error) {
         toast.error(toastMessages.error.addLink);

@@ -8,8 +8,7 @@ import SubmitButton from "../button/SubmitButton";
 import SnsLogin from "../Auth/SnsLogin";
 import Link from "next/link";
 import useExpandedStore from "@/store/useExpandedStore";
-import { useEffect } from "react";
-import useLoginLoading from "@/store/useLoginLoading";
+import { useEffect, useState } from "react";
 import LoginLoadingSpinner from "../loadingSpinner/LoginLoadingSpinner";
 
 interface LoginType {
@@ -25,12 +24,12 @@ const Sidebar = () => {
     handleSubmit,
   } = useForm<LoginType>();
   const { isExpanded, toggleExpanded, setClosed } = useExpandedStore();
-  const { isLoading, setIsLoading, setIsDone } = useLoginLoading();
+  const [isLoading, setIsLoading] = useState(false);
   const { user } = useAuthStore();
 
   const onSubmit = async (data: LoginType) => {
     try {
-      setIsLoading();
+      setIsLoading(true);
       const response = await login(data);
       if (response) {
         toast.success(toastMessages.success.login);
@@ -40,7 +39,7 @@ const Sidebar = () => {
     } catch (error) {
       toast.error(error as string);
     } finally {
-      setIsDone();
+      setIsLoading(false);
     }
   };
   useEffect(() => {

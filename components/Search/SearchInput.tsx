@@ -23,7 +23,7 @@ export const SearchInput = () => {
     }
   }, [debouncedValue]);
 
-  const handleClick = () => {
+  const handleDelete = () => {
     setValue("");
     router.push("/");
   };
@@ -49,7 +49,7 @@ export const SearchInput = () => {
         <button
           className="rounded-full bg-white size-6 font-bold text-gray-500 flex items-center justify-center"
           type="button"
-          onClick={handleClick}
+          onClick={handleDelete}
         >
           ×
         </button>

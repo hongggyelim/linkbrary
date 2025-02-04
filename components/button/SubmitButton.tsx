@@ -55,7 +55,7 @@ const SubmitButton = ({
       disabled={isLoading || disabled}
       {...props}
     >
-      {isLoading ? (
+      {isLoading || disabled ? (
         <div className="h-full">
           <LoadingSpinner size={25} />
         </div>
