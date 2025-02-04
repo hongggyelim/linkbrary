@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react";
-import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
-import { parse } from "cookie";
-import { LinkData } from "@/types/linkTypes";
-import { FolderData } from "@/types/folderTypes";
 import { SearchInput } from "../components/Search/SearchInput";
 import { useLinkCardStore } from "@/store/useLinkCardStore";
-import axiosInstance from "@/lib/api/axiosInstanceApi";
 import useModalStore from "@/store/useModalStore";
 import Pagination from "@/components/button/Pagination";
 import AddLinkInput from "@/components/Link/AddLinkInput";
@@ -22,85 +17,21 @@ import useFetchLinks from "@/hooks/useFetchLinks";
 import useViewport from "@/hooks/useViewport";
 import useFolderName from "@/hooks/useFolderName";
 import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
-import toast from "react-hot-toast";
-import toastMessages from "@/lib/toastMessage";
 import useAuthStore from "@/store/useAuthStore";
 import { bindClass } from "@/util/bindClass";
 import LinkHere from "@/components/home/LinkHere";
 import axios from "axios";
-
-interface LinkPageProps {
-  linkList: LinkData[];
-  folderList: FolderData[];
-  totalCount: number;
-}
-
-// 페이지 접속시에 초기렌더링 데이터(전체 폴더, 전체링크리스트)만 fetch해서 client로 전달.
-export const getServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  const { req } = context;
-  const cookies = parse(req.headers.cookie || "");
-  const accessToken = cookies.accessToken;
-  if (!accessToken) {
-    // 토큰이 없으면 빈 데이터와 함께 렌더링
-    return {
-      props: {
-        linkList: [], // 빈 배열 반환
-        folderList: [], // 빈 배열 반환
-        totalCount: 0, // 0으로 설정
-      },
-    };
-  }
-  const fetchData = async (endpoint: string) => {
-    const res = await axiosInstance.get(endpoint, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    return res.data;
-  };
-
-  try {
-    const [links, folders] = await Promise.all([
-      fetchData("/links"),
-      fetchData("/folders"),
-    ]);
-
-    return {
-      props: {
-        linkList: links.list || [],
-        folderList: folders || [],
-        totalCount: links.totalCount || 0,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        linkList: [],
-        folderList: [],
-        totalCount: 0,
-      },
-    };
-  }
-};
+import { FolderData } from "@/types/folderTypes";
 
 // 링크 페이지
-const LinkPage = ({
-  linkList: initialLinkList,
-  folderList: initialFolderList,
-  totalCount: initialTotalCount,
-}: LinkPageProps) => {
+const LinkPage = () => {
   const router = useRouter();
   const { search, folder } = router.query;
   const { isMobile, isTablet, isPC, width } = useViewport();
-  const { totalCount, linkCardList, setLinkCardList } =
-    useLinkCardStore.getState();
+  const { totalCount, linkCardList, setLinkCardList } = useLinkCardStore();
   const [isLoading, setIsLoading] = useState(false);
   const [folderName] = useFolderName(folder);
-  const [folderList, setFolderList] = useState(initialFolderList);
-  const { openModal } = useModalStore();
+  const [folderList, setFolderList] = useState<FolderData[]>([]);
   const [cardCount, setCardCount] = useState(3);
   const { user } = useAuthStore();
 
@@ -110,13 +41,10 @@ const LinkPage = ({
     setCardCount(newCount);
   }, [width]);
 
-  useEffect(() => {
-    setLinkCardList(initialLinkList, initialTotalCount);
-  }, [initialLinkList, initialTotalCount, setLinkCardList]);
-
   // 링크페이지의 query가 바뀌면 새로운 리스트로 업데이트 해주는 훅
   useFetchLinks(setLinkCardList, setIsLoading);
 
+  // 폴더 데이터 페치
   useEffect(() => {
     const fetchFolders = async () => {
       try {
@@ -126,34 +54,29 @@ const LinkPage = ({
         console.error("폴더 목록 불러오기 실패", error);
       }
     };
-
     if (user) {
       fetchFolders(); // 로그인 후 폴더 목록 요청
     }
+    console.log("folder조회", folderList);
   }, [user]); // user가 변경될 때마다 실행
 
-  // useEffect(() => {
-  //   const fetchLinks = async () => {
-  //     try {
-  //       const response = await axios.get("/api/links"); // 링크 목록 요청
-  //       setLinkCardList(response.data || [], response.data.length);
-  //     } catch (error) {
-  //       console.error("링크 목록 불러오기 실패", error);
-  //     }
-  //   };
-
-  //   if (user) {
-  //     fetchLinks(); // 로그인 후 폴더 목록 요청
-  //   }
-  // }, [user]); // user가 변경될 때마다 실행
-
-  // 로그인한 상태에서만, 생성된 폴더가 없으면 폴더 생성 모달 띄워주기
+  // 링크 데이터 페치
   useEffect(() => {
-    if (user && folderList.length === 0) {
-      toast.success(toastMessages.success.addFolderInfo);
-      openModal("AddFolderModal");
+    const fetchLinks = async () => {
+      try {
+        const response = await axios.get("/api/links"); // 링크 목록 요청
+        setLinkCardList(response.data.list || [], response.data.list.length);
+      } catch (error) {
+        console.error("링크 목록 불러오기 실패", error);
+      }
+    };
+
+    if (user) {
+      fetchLinks(); // 로그인 후 폴더 목록 요청
     }
-  }, [user, folderList]);
+    console.log("linkcardList 조회", linkCardList);
+  }, [user]); // user가 변경될 때마다 실행
+
   return (
     <>
       {/* 로그인 여부와 상관없이 보여주는 부분 */}
