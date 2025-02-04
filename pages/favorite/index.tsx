@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { parse } from "cookie";
-import axiosInstance from "@/lib/api/axiosInstanceApi";
 import CardsLayout from "@/components/Layout/CardsLayout";
 import Container from "@/components/Layout/Container";
 import LinkCard from "@/components/Link/LinkCard";
 import Pagination from "@/components/button/Pagination";
-import useFetchLinks from "@/hooks/useFetchLinks";
 import EmptyFavoriteList from "@/components/Favorite/EmptyFavoriteList";
 import LinkCardSkeleton from "@/components/loadingSpinner/LinkCardSkeleton";
 import useViewport from "@/hooks/useViewport";
+import useFetchFavorites from "@/hooks/useFetchFavorites";
 
 interface FavoriteDataType {
   id: number;
@@ -22,57 +19,17 @@ interface FavoriteDataType {
   createdAt: string;
 }
 
-interface FavoriteProps {
-  totalCount: number;
-  favoriteList: FavoriteDataType[];
-}
-
-export const getServerSideProps: GetServerSideProps = async (
-  context: GetServerSidePropsContext
-) => {
-  // 클라이언트의 쿠키 가져오기
-  const { req } = context;
-  const cookies = parse(req.headers.cookie || "");
-  const accessToken = cookies.accessToken;
-
-  try {
-    if (!accessToken) {
-      return {
-        redirect: {
-          destination: "/login",
-          permanent: false,
-        },
-      };
-    }
-
-    const res = await axiosInstance.get("/favorites", {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    const { list, totalCount } = res.data || { list: [], totalCount: 0 };
-    return { props: { favoriteList: list, totalCount } };
-  } catch (error) {
-    console.error("서버사이드에러", error);
-    return { props: { favoriteList: [], totalCount: 0 } };
-  }
-};
-
-const FavoritePage = ({
-  favoriteList,
-  totalCount: initialTotalCount,
-}: FavoriteProps) => {
+const FavoritePage = () => {
   const router = useRouter();
-  const [linkCardList, setLinkCardList] =
-    useState<FavoriteDataType[]>(favoriteList);
-  const [isLoading, setIsLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState(initialTotalCount);
-  const { isMobile, isTablet, isPC, width } = useViewport();
+
+  const { list: linkCardList, totalCount, isLoading } = useFetchFavorites();
+
+  const { isTablet, isPC, width } = useViewport();
   const [cardCount, setCardCount] = useState(3);
   useEffect(() => {
     const newCount = isPC ? 3 : isTablet ? 2 : 1;
     setCardCount(newCount);
   }, [width]);
-
-  useFetchLinks(setLinkCardList, setIsLoading);
 
   // 마이링크 페이지로 돌아감
   const returnButton = () => {

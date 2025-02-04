@@ -7,9 +7,10 @@ import SubmitButton from "../button/SubmitButton";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { urlRegex } from "@/util/regex";
-import { QueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
-const EditLink = ({
+const EditLinkModal = ({
   folderName,
   link,
   linkId,
@@ -21,6 +22,11 @@ const EditLink = ({
   const [value, setValue] = useState("");
   const { closeModal } = useModalStore();
   const { updateLink } = useLinkCardStore();
+  const router = useRouter();
+  const { query } = router;
+  const queryClient = useQueryClient();
+  const folderId = query.folder as string | undefined;
+  const page = query.page ? Number(query.page) : 1;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -38,11 +44,10 @@ const EditLink = ({
     } else {
       try {
         await updateLink(linkId, body);
-        closeModal();
-        const queryClient = new QueryClient();
         await queryClient.invalidateQueries({
-          queryKey: ["links"],
+          queryKey: ["links", folderId, page],
         });
+        closeModal();
         toast.success(toastMessages.success.editLink);
       } catch (err) {
         toast.error(toastMessages.error.editLink);
@@ -69,4 +74,4 @@ const EditLink = ({
     </ModalContainer>
   );
 };
-export default EditLink;
+export default EditLinkModal;

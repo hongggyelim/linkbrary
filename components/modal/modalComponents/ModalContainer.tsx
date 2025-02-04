@@ -5,7 +5,7 @@ import { MouseEvent, useEffect, useRef } from "react";
 
 const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
   const { isOpen, closeModal } = useModalStore();
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const modalRef = useRef<HTMLDialogElement | null>(null);
   const onClickBackDrop = (e: MouseEvent<HTMLDivElement>) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node))
       closeModal();
@@ -27,7 +27,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
       onClick={onClickBackDrop}
       className="overflow-hidden z-30 fixed top-0 left-0 flex justify-center items-center bg-black/40 h-screen w-screen animate-fadein"
     >
-      <div
+      <dialog
         ref={modalRef}
         className="z-20 relative w-[300px] md:w-[360px] lg:w-[360px] py-8 px-10 flex flex-col gap-6 bg-white rounded-[15px] border border-yellow300"
       >
@@ -57,7 +57,7 @@ const ModalContainer = ({ title, subtitle, children }: ModalPropType) => {
         >
           <IoIosClose className="text-orange100" strokeWidth={2} />
         </button>
-      </div>
+      </dialog>
     </div>
   );
 };

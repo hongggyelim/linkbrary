@@ -6,12 +6,13 @@ import useModalStore from "@/store/useModalStore";
 import SubmitButton from "../button/SubmitButton";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
-import { QueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AddFolderModal = ({ folderName }: { folderName: string }) => {
   const [value, setValue] = useState("");
 
   const { closeModal } = useModalStore();
+  const queryClient = useQueryClient();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -30,9 +31,8 @@ const AddFolderModal = ({ folderName }: { folderName: string }) => {
         await postFolders(body);
         toast.success(toastMessages.success.addFolder);
 
-        const queryClient = new QueryClient();
         await queryClient.invalidateQueries({
-          queryKey: ["folders"],
+          queryKey: ["folder"],
         });
       } catch (error) {
         toast.error(toastMessages.error.addFolder);

@@ -5,7 +5,7 @@ import ModalContainer from "./modalComponents/ModalContainer";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";
 import { useRouter } from "next/router";
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 const DeleteFolderModal = ({
   // folderName,
@@ -18,6 +18,8 @@ const DeleteFolderModal = ({
 }) => {
   const { closeModal } = useModalStore();
   const router = useRouter();
+  const queryClient = useQueryClient();
+
   const handleSubmit = async () => {
     // 폴더 내에 링크 개수 0 일때만 폴더 삭제 가능 -> 링크 1개 이상이면 error toast 띄우고 있음 or 전체 링크 삭제 후 폴더 삭제
     if (linkCount !== 0) {
@@ -26,12 +28,12 @@ const DeleteFolderModal = ({
     } else {
       try {
         await deleteFolder(folderId);
-        toast.success(toastMessages.success.deleteFolder);
-        const queryClient = new QueryClient();
+
         await queryClient.invalidateQueries({
-          queryKey: ["folders"],
+          queryKey: ["folder"],
         });
         router.push("/");
+        toast.success(toastMessages.success.deleteFolder);
       } catch (error) {
         toast.error(toastMessages.error.deleteFolder);
       } finally {
