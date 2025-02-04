@@ -33,7 +33,7 @@ const FolderTag = ({ folderList }: FolderListData) => {
             type="submit"
             onClick={() => handleSubmit(folder.id)}
           >
-            {folder.name}
+            {folder.name.slice(0, 6)}
           </button>
         </li>
       ))}

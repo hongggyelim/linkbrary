@@ -16,11 +16,7 @@ const AddFolderModal = ({ folderName }: { folderName: string }) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    if (newValue.length > 5) {
-      toast.error(toastMessages.error.limitFolderNameLength);
-    } else {
-      setValue(newValue);
-    }
+    setValue(newValue);
   };
   const handleSubmit = async () => {
     const body = {

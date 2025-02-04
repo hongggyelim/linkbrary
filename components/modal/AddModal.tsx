@@ -10,7 +10,13 @@ import toastMessages from "@/lib/toastMessage";
 import { useRouter } from "next/router";
 import { useQueryClient } from "@tanstack/react-query";
 
-const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
+const AddLinkModal = ({
+  list,
+  link,
+}: {
+  list: FolderItemType[];
+  link: string;
+}) => {
   const [selectedId, setSelectedId] = useState<number | null>(
     list[0]?.id || null
   );
@@ -66,4 +72,4 @@ const AddModal = ({ list, link }: { list: FolderItemType[]; link: string }) => {
     </ModalContainer>
   );
 };
-export default AddModal;
+export default AddLinkModal;

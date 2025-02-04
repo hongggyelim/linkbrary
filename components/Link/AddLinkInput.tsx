@@ -1,6 +1,5 @@
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { FolderListData } from "@/types/folderTypes";
-import Image from "next/image";
 import useModalStore from "@/store/useModalStore";
 import toast from "react-hot-toast";
 import toastMessages from "@/lib/toastMessage";

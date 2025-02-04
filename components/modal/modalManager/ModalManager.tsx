@@ -1,5 +1,5 @@
 import useModalStore from "@/store/useModalStore";
-import AddModal from "../AddModal";
+import AddLinkModal from "../AddModal";
 import DeleteFolderModal from "../DeleteFolderModal";
 import AddFolderModal from "../AddFolderModal";
 import DeleteLinkModal from "../DeleteLinkModal";
@@ -27,7 +27,7 @@ export const Modal = () => {
     case "AddFolderModal":
       return <AddFolderModal folderName={props.folderName || ""} />;
     case "AddModal":
-      return <AddModal list={props.list || []} link={props.link || ""} />;
+      return <AddLinkModal list={props.list || []} link={props.link || ""} />;
     case "DeleteFolderModal":
       return (
         <DeleteFolderModal

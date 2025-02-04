@@ -32,12 +32,12 @@ const DeleteFolderModal = ({
         await queryClient.invalidateQueries({
           queryKey: ["folder"],
         });
-        router.push("/");
         toast.success(toastMessages.success.deleteFolder);
       } catch (error) {
         toast.error(toastMessages.error.deleteFolder);
       } finally {
         closeModal();
+        router.push("/");
       }
     }
   };
