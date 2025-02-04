@@ -23,6 +23,7 @@ const Dropdown = ({ items }: DropdownProps) => {
           <Link
             key={item.label}
             href={item.href}
+            onClick={item.onClick}
             className={`${buttonStyle} text-center `}
           >
             {item.label}
