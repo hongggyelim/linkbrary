@@ -104,12 +104,8 @@ const FavoritePage = ({
             <>
               <CardsLayout>
                 {linkCardList.length > 0
-                  ? linkCardList.map((favorite, index) => (
-                      <LinkCard
-                        key={favorite.id}
-                        info={favorite}
-                        id={index === 2 ? "target" : ""}
-                      />
+                  ? linkCardList.map((favorite) => (
+                      <LinkCard key={favorite.id} info={favorite} />
                     ))
                   : null}
               </CardsLayout>

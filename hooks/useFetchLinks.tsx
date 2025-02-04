@@ -6,17 +6,19 @@ import { getLink, getLinks } from "@/lib/api/link";
 const useFetchLinks = () => {
   const router = useRouter();
   const { query } = router;
-  const queryKey = ["links", query];
+
+  const folderId = query.folder as string | undefined;
+  const page = query.page ? Number(query.page) : 1;
+  const queryKey = ["links", folderId, page];
+
   const { data, error, isLoading } = useQuery({
     queryKey,
     queryFn: () => {
-      if (query.folder) {
-        return getLink(query, query.folder);
+      if (folderId) {
+        return getLink(query, folderId);
       }
-      // 전체 링크 조회
-      return getLinks(query);
+      return getLinks({ ...query, page: query.page || "1" });
     },
-    enabled: !!query.folder || !!query.page,
   });
   const list: LinkData[] = data?.list || [];
   const totalCount = data?.totalCount || 0;

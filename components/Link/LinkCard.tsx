@@ -18,10 +18,9 @@ interface LinkCardProps {
     url: string;
     createdAt: string;
   };
-  id?: string;
 }
 
-const LinkCard = ({ info, id }: LinkCardProps) => {
+const LinkCard = ({ info }: LinkCardProps) => {
   const [isSubscribed, setIsSubscribed] = useState(info.favorite || false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const { isOpen, openModal } = useModalStore();
@@ -144,9 +143,7 @@ const LinkCard = ({ info, id }: LinkCardProps) => {
         >
           {info.description || "설명"}
         </div>
-        <div className="text-sm" id={id}>
-          {formattedDate || "2024.11.06"}
-        </div>
+        <div className="text-sm">{formattedDate || "2024.11.06"}</div>
       </section>
     </div>
   );
