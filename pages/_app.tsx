@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
         />
         <meta
           property="og:image"
-          content="https://linkhere.vercel.app/images/thumbnail_2x.png"
+          content="https://linkhere.vercel.app/images/thumbnail.png"
         />
         <meta
           name="viewport"
