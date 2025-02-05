@@ -19,6 +19,7 @@ import useAuthStore from "@/store/useAuthStore";
 import { bindClass } from "@/util/bindClass";
 import LinkHere from "@/components/home/LinkHere";
 import useFetchFolders from "@/hooks/useFetchFolders";
+import { useQueryClient } from "@tanstack/react-query";
 
 // 링크 페이지
 const LinkPage = () => {
@@ -28,6 +29,10 @@ const LinkPage = () => {
   const [folderName] = useFolderName(folder);
   const [cardCount, setCardCount] = useState(3);
   const { user } = useAuthStore();
+  const { query } = router;
+  const folderId = query.folder as string | undefined;
+  const page = query.page ? Number(query.page) : 1;
+  const queryClient = useQueryClient();
 
   // 아이템 개수 반응형
   useEffect(() => {
@@ -44,6 +49,15 @@ const LinkPage = () => {
     totalCount,
     isLoading: linkLoading,
   } = useFetchLinks();
+
+  useEffect(() => {
+    queryClient.invalidateQueries({
+      queryKey: ["folder"],
+    });
+    queryClient.invalidateQueries({
+      queryKey: ["links", folderId, page],
+    });
+  }, [user]);
 
   return (
     <>
