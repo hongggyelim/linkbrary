@@ -1,7 +1,6 @@
 import { PiHandPalmDuotone, PiFolderSimpleStarDuotone } from "react-icons/pi";
 
 const LinkHere = () => {
-  const align = "flex justify-center items-center";
   return (
     <div className="text-[24px] font-semibold text-orange50 mt-[80px] flex flex-col justify-center">
       <p>

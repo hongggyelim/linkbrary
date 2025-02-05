@@ -20,6 +20,7 @@ import { bindClass } from "@/util/bindClass";
 import LinkHere from "@/components/home/LinkHere";
 import useFetchFolders from "@/hooks/useFetchFolders";
 import { useQueryClient } from "@tanstack/react-query";
+import Link from "next/link";
 
 // 링크 페이지
 const LinkPage = () => {
@@ -72,11 +73,13 @@ const LinkPage = () => {
       >
         <div className="my-10 ">
           <h2 className="text-[32px] leading-[42px] font-extrabold">
-            <span>I&#39;m&#32;</span>
-            <span className="gradient-text">Link</span>
-            <br />
-            <span>I&#39;m&#32;</span>
-            <span className="gradient-text">Here </span>
+            <Link href="/">
+              <span>I&#39;m&#32;</span>
+              <span className="gradient-text">Link</span>
+              <br />
+              <span>I&#39;m&#32;</span>
+              <span className="gradient-text">Here </span>
+            </Link>
           </h2>
         </div>
         <AddLinkInput folderList={folderData || []} />
