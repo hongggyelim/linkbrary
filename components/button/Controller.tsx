@@ -14,20 +14,18 @@ const Controller = () => {
       behavior: "smooth",
     });
   };
+  const buttonClass =
+    "rounded-full border text-white bg-orange50 bg-opacity-70 border-orange100 size-[35px] flex items-center justify-center";
 
   return (
-    <div className="flex flex-col gap-3 fixed bottom-[50px] right-10">
-      <button
-        type="button"
-        onClick={handleClickToTop}
-        className="rounded-full border text-white bg-orange50 bg-opacity-70 border-orange100 size-[35px] flex items-center justify-center"
-      >
+    <div className="flex flex-col gap-3 fixed bottom-[50px] right-[40px]">
+      <button type="button" onClick={handleClickToTop} className={buttonClass}>
         <FaAngleUp fill="white" />
       </button>
       <button
         type="button"
         onClick={handleClickToBottom}
-        className="rounded-full border text-white bg-orange50 bg-opacity-70 border-orange100 size-[35px] flex items-center justify-center"
+        className={buttonClass}
       >
         <FaAngleUp className="rotate-180" fill="white" />
       </button>

@@ -90,7 +90,7 @@ const LinkPage = () => {
       {user && (
         <>
           <Container>
-            <main className="mt-[40px] relative">
+            <main className="mt-[40px]">
               <SearchInput />
               {search && <SearchResultMessage message={search} />}
               <div className="flex justify-between mt-[40px]">

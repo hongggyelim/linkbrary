@@ -8,13 +8,13 @@ export const AddFolderButton = () => {
   return (
     <button
       className={
-        !isMobile
-          ? "md:mt-auto xl:mt-0 text-orange100"
-          : "fixed-bottom w-[120px] h-[35px] rounded-[20px] bg-orange100 text-white hover:bg-orange50 z-50"
+        isMobile
+          ? "fixed-bottom size-[35px] rounded-[20px] bg-orange100 text-white hover:bg-orange50 hover:bg-opacity-70 z-50"
+          : "md:mt-auto xl:mt-0 text-orange100"
       }
       onClick={() => openModal("AddFolderModal")}
     >
-      폴더 추가 +
+      {isMobile ? "+" : "폴더 추가 +"}
     </button>
   );
 };

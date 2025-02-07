@@ -51,8 +51,8 @@ em {
 
   .fixed-bottom {
     position: fixed;
-    bottom: 50px;
-    left: 50%;
+    bottom: 150px;
+    right: 22px;
     transform: translateX(-50%);
     text-align: center;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
